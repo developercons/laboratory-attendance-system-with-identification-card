@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Laboratory Attendance System with Identification card</string>
+    <string name="read_id">カード読み取り</string>
+    <string name="id_wating">カードをかざしてください</string>
 </resources>
