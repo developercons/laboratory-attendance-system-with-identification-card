@@ -18,5 +18,8 @@
         </activity>
         <activity android:name=".IdWatingActivity"></activity>
     </application>
-
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
 </manifest>
