@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         val readIdButton: Button = findViewById(R.id.read_id) as Button
         readIdButton.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
-                val intent: Intent = Intent(this@MainActivity, IdWatingActivity::class.java)
+                val intent: Intent = Intent(this@MainActivity, IdWaitingActivity::class.java)
                 startActivity(intent)
             }
         })
