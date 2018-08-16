@@ -40,11 +40,14 @@ class IdWaitingActivity : AppCompatActivity() {
         mNfcAdapter.disableForegroundDispatch(this@IdWaitingActivity)
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
 
         // NFCのEXTRA_IDを読み込み表示する
-        val uid: ByteArray? = intent?.getByteArrayExtra(NfcAdapter.EXTRA_ID)
+        val uid: ByteArray = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID) ?: run {
+            Toast.makeText(this@IdWaitingActivity, "Failed to read NFC", Toast.LENGTH_SHORT)
+            return
+        }
         Toast.makeText(this@IdWaitingActivity, Arrays.toString(uid), Toast.LENGTH_SHORT).show()
     }
 }
