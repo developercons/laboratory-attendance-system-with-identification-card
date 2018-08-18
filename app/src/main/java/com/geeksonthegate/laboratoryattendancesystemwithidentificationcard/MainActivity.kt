@@ -4,19 +4,24 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val readIdButton: Button = findViewById(R.id.read_id) as Button
-        readIdButton.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View) {
-                val intent: Intent = Intent(this@MainActivity, IdWaitingActivity::class.java)
-                startActivity(intent)
-            }
-        })
+
+        enter.setOnClickListener{ accessButtonTapped(it) }
+        exit.setOnClickListener{ accessButtonTapped(it)}
+
     }
+
+    // カード読み取り(入退室)画面に遷移
+    private fun accessButtonTapped(view: View?) {
+        val intent = Intent(this, AccessActivity::class.java)
+        intent.putExtra("access_label", view?.id)
+        startActivity(intent)
+    }
+
 }
