@@ -7,10 +7,10 @@ import android.nfc.NfcAdapter
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import kotlinx.android.synthetic.main.access.*
+import kotlinx.android.synthetic.main.activity_scan_studentcard.*
 import java.util.*
 
-class AccessActivity : AppCompatActivity() {
+class ScanStudentcardActivity : AppCompatActivity() {
 
     /**
      * NFCアダプタのインスタンスを格納するプロパティ
@@ -19,12 +19,12 @@ class AccessActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.access)
+        setContentView(R.layout.activity_scan_studentcard)
 
-        val id = intent.getIntExtra("access_label",0)
+        val id = intent.getIntExtra("scan_card_label",0)
         when(id) {
-            R.id.enter -> accessLabel.setText(R.string.enter_label)
-            R.id.exit ->  accessLabel.setText(R.string.exit_label)
+            R.id.enter -> scanCardLabel.setText(R.string.enter_label)
+            R.id.exit ->  scanCardLabel.setText(R.string.exit_label)
         }
 
         // NFCアダプタのインスタンスを生成
@@ -34,7 +34,7 @@ class AccessActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         // NFCがかざされたとき、このActivityに読み込まれるようにする
-        val intent = Intent(this, AccessActivity::class.java)
+        val intent = Intent(this, ScanStudentcardActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
         val pendingIntent: PendingIntent = PendingIntent.getActivity(applicationContext, 0, intent, 0)
         mNfcAdapter.enableForegroundDispatch(this, pendingIntent, null, null)

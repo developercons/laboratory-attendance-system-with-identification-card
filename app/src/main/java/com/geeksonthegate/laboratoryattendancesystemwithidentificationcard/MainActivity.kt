@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     // カード読み取り(入退室)画面に遷移
     private fun accessButtonTapped(view: View?) {
-        val intent = Intent(this, AccessActivity::class.java)
+        val intent = Intent(this, ScanStudentcardActivity::class.java)
         intent.putExtra("access_label", view?.id)
         startActivity(intent)
     }
