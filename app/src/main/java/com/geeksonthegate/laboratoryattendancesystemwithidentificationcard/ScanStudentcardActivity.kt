@@ -21,7 +21,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan_studentcard)
 
-        val id = intent.getIntExtra("scan_card_label",0)
+        val id = intent.getIntExtra("scan_label",0)
         when(id) {
             R.id.enter -> scanCardLabel.setText(R.string.enter_label)
             R.id.exit ->  scanCardLabel.setText(R.string.exit_label)
