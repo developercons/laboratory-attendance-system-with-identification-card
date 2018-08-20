@@ -51,19 +51,27 @@ class ScanStudentcardActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
+
         // このアプリが前面にない時はNFCがかざされても反応しないようにする
         mNfcAdapter.disableForegroundDispatch(this)
     }
 
-    @SuppressLint("ShowToast")
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
 
-        // NFCのEXTRA_IDを読み込み表示する
+        val nextIntent = Intent(this, MainActivity::class.java)
+
+        // NFCのEXTRA_IDを読み込み、前画面で押されたボタンと共に表示する
         val uid: ByteArray = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID) ?: run {
-            Toast.makeText(this, "Failed to read NFC", Toast.LENGTH_SHORT)
+            Toast.makeText(this, "Failed to read NFC", Toast.LENGTH_SHORT).show()
             return
         }
-        Toast.makeText(this, Arrays.toString(uid), Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, Arrays.toString(uid) + title, Toast.LENGTH_SHORT).show()
+
+        // 次に表示するActivityへnfc_idと前画面に押されたボタンを送る
+        nextIntent.putExtra("nfc_idm", uid)
+        nextIntent.putExtra("scan_label", title)
+        startActivity(nextIntent)
+
     }
 }
