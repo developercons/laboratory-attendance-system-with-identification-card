@@ -1,6 +1,5 @@
 package com.geeksonthegate.laboratoryattendancesystemwithidentificationcard
 
-import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Intent
 import android.nfc.NfcAdapter
@@ -21,10 +20,19 @@ class ScanStudentcardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan_studentcard)
 
-        val id = intent.getIntExtra("scan_label",0)
-        when(id) {
-            R.id.enter -> scanCardLabel.setText(R.string.enter_label)
-            R.id.exit ->  scanCardLabel.setText(R.string.exit_label)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        // 前画面で押されたボタンに応じてラベルの内容を変更
+        val id = intent.getIntExtra("scan_label", 0)
+        when (id) {
+            R.id.enter -> {
+                scanCardLabel.setText(R.string.enter_label)
+                setTitle(R.string.enter)
+            }
+            R.id.exit -> {
+                scanCardLabel.setText(R.string.exit_label)
+                setTitle(R.string.exit)
+            }
         }
 
         // NFCアダプタのインスタンスを生成
@@ -33,6 +41,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
         // NFCがかざされたとき、このActivityに読み込まれるようにする
         val intent = Intent(this, ScanStudentcardActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
