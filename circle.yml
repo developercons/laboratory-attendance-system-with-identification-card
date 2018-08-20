@@ -21,6 +21,8 @@ dependencies:
     # ローカル開発環境で同意した情報を使用する
     # OSXの場合このファイルは`~/Library/Android/sdk/licenses/android-sdk-license`
     - echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > ${ANDROID_HOME}/licenses/android-sdk-license
+    # Gradleに権限追加
+    - chmod -x ./gradlew
 
   override:
       - ./gradlew dependencies || true
