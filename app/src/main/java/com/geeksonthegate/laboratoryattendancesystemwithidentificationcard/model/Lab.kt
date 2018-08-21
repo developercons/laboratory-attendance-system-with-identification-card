@@ -5,24 +5,15 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import java.util.*
 
-open class Lab() : RealmObject() {
+open class Lab(var labName: String? = null, var coreTimeArray: RealmList<CoreTime>? = null) : RealmObject() {
     @PrimaryKey
     var labId: String = UUID.randomUUID().toString()
-    var labName: String? = null
-        set(value) {
-            value ?: throw Exception("Invalid LabName")
-            if (value.length > 7 || value.isEmpty()) throw Exception("Invalid labName")
-        }
 
-    var coreTimeArray: RealmList<CoreTime>? = null
-        set(value) {
-            value ?: throw Exception("Invalid CoreTime")
-            if (value.size == 0) throw Exception("Invalid coreTimeArray")
-        }
+    init {
+        labName?.let { if (it.length > 7 || it.isEmpty()) throw Exception("Invalid labName") }
+                ?: throw Exception("Invalid LabName")
 
-    constructor(labName: String?, coreTimeArray: RealmList<CoreTime>?) : this() {
-        this.labId = UUID.randomUUID().toString()
-        this.labName = labName
-        this.coreTimeArray = coreTimeArray
+        coreTimeArray?.let { if (it.size == 0) throw Exception("Invalid coreTimeArray") }
+                ?: throw Exception("Invalid CoreTime")
     }
 }
