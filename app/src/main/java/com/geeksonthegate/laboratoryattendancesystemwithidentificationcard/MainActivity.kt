@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         // 研究室
         val coreTimeArray = RealmList<CoreTime>()
         for (i in 0..6) {
-            coreTimeArray.add(CoreTime(i, GregorianCalendar(2000, 0, 1, 11, 0).time,
+            coreTimeArray.add(CoreTime(GregorianCalendar(2000, 0, 1, 11, 0).time,
                     GregorianCalendar(2000, 0, 1, 11, 0).time, false))
         }
         val labArray = mutableListOf<Lab>()
