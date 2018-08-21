@@ -5,6 +5,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.AttendanceLog
+import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.CoreTime
+import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Lab
+import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Student
 import io.realm.Realm
 import io.realm.RealmList
 import kotlinx.android.synthetic.main.activity_main.*

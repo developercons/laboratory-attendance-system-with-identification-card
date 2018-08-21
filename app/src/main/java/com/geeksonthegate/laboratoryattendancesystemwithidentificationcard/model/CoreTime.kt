@@ -1,4 +1,4 @@
-package com.geeksonthegate.laboratoryattendancesystemwithidentificationcard
+package com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model
 
 import io.realm.RealmObject
 import java.util.*
