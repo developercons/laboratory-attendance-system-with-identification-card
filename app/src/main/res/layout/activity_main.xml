@@ -18,7 +18,7 @@
         android:layout_marginTop="25dp"
         android:layout_weight="1"
         android:background="@drawable/access"
-        android:contentDescription="@string/access_button"
+        android:contentDescription="@string/enter_button"
         android:elevation="25dp"
         android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintBottom_toTopOf="@+id/exit"
@@ -55,7 +55,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <ImageButton
         android:id="@+id/edit"
