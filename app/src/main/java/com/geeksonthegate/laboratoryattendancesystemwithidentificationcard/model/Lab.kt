@@ -11,13 +11,13 @@ open class Lab() : RealmObject() {
     var labName: String? = null
         set(value) {
             value ?: throw Exception("Invalid LabName")
-            if (value.length > 7 || value.isEmpty()) throw Exception("Invalid LabName")
+            if (value.length > 7 || value.isEmpty()) throw Exception("Invalid labName")
         }
 
     var coreTimeArray: RealmList<CoreTime>? = null
         set(value) {
             value ?: throw Exception("Invalid CoreTime")
-            if (value.size == 0) throw Exception("Invalid CoreTime")
+            if (value.size == 0) throw Exception("Invalid coreTimeArray")
         }
 
     constructor(labName: String?, coreTimeArray: RealmList<CoreTime>?) : this() {

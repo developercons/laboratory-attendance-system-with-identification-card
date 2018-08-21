@@ -9,17 +9,17 @@ open class AttendanceLog() : RealmObject() {
     var logId: String = UUID.randomUUID().toString()
     var idm: String? = null
         set(value) {
-            value ?: throw Exception("Invalid IDm")
+            value ?: throw Exception("Invalid idm")
         }
 
     var enterTime: Date? = null
         set(value) {
-            value ?: throw Exception("Invalid Date")
+            value ?: throw Exception("Invalid enterTime")
         }
 
     var exitTime: Date? = null
         set(value) {
-            value ?: throw Exception("Invalid Date")
+            value ?: throw Exception("Invalid exitTime")
         }
 
     constructor(idm: String?, enterTime: Date?, exitTime: Date?) : this() {

@@ -7,7 +7,7 @@ open class Student() : RealmObject() {
     @PrimaryKey
     var idm: String? = null
         set(value) {
-            value ?: throw Exception("Invalid IDm")
+            value ?: throw Exception("Invalid idm")
         }
 
     var lab: Lab? = null
@@ -17,14 +17,14 @@ open class Student() : RealmObject() {
 
     var studentId: String? = null
         set(value) {
-            value ?: throw Exception("Invalid StudentId")
-            if (value.length != 7) throw Exception("Invalid StudentId")
+            value ?: throw Exception("Invalid studentId")
+            if (value.length != 7) throw Exception("Invalid studentId")
         }
 
     var name: String? = null
         set(value) {
-            value ?: throw Exception("Invalid Name")
-            if (value.length > 7 || value.isEmpty()) throw Exception("Invalid Name")
+            value ?: throw Exception("Invalid name")
+            if (value.length > 7 || value.isEmpty()) throw Exception("Invalid name")
         }
 
     constructor(idm: String?, studentId: String?, name: String?, lab: Lab?) : this() {
