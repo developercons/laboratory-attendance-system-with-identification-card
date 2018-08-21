@@ -12,13 +12,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        enter.setOnClickListener{ scanStudentcartButtonTapped(it) }
-        exit.setOnClickListener{ scanStudentcartButtonTapped(it)}
+        enter.setOnClickListener{ scanStudentcardButtonTapped(it)}
+        exit.setOnClickListener{ scanStudentcardButtonTapped(it)}
 
     }
 
     // カード読み取り(入退室)画面に遷移
-    private fun scanStudentcartButtonTapped(view: View?) {
+    private fun scanStudentcardButtonTapped(view: View?) {
         val intent = Intent(this, ScanStudentcardActivity::class.java)
         intent.putExtra("scan_label", view?.id)
         startActivity(intent)
