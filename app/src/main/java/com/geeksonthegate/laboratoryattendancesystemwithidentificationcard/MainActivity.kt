@@ -24,6 +24,9 @@ class MainActivity : AppCompatActivity() {
 
         enter.setOnClickListener { scanStudentcardButtonTapped(it) }
         exit.setOnClickListener { scanStudentcardButtonTapped(it) }
+        register.setOnClickListener { scanStudentcardButtonTapped(it) }
+        edit.setOnClickListener { scanStudentcardButtonTapped(it) }
+        history.setOnClickListener {}
 
         // 以降、テスト用ダミーデータの登録
         // 研究室
