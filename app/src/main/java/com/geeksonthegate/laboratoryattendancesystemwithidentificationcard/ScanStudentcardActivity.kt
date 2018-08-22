@@ -28,10 +28,12 @@ class ScanStudentcardActivity : AppCompatActivity() {
             R.id.enter -> {
                 scanCardLabel.setText(R.string.enter_label)
                 setTitle(R.string.enter)
+                background.setImageResource(R.drawable.bg_enter)
             }
             R.id.exit -> {
                 scanCardLabel.setText(R.string.exit_label)
                 setTitle(R.string.exit)
+                background.setImageResource(R.drawable.bg_exit)
             }
         }
 
