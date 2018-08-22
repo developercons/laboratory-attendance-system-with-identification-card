@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat.startActivity
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Toast
+import java.util.*
 
 class RoomConfirmationActivity : AppCompatActivity() {
 
@@ -13,11 +15,12 @@ class RoomConfirmationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_room_confirmation)
 
-        val id = intent.getIntExtra("scan_label", 0)
+        val id = intent.getStringExtra("scan_label")
         when (id) {
-            R.id.enter -> {setTitle(R.string.enter)}
-            R.id.exit -> {setTitle(R.string.exit)}
+            getString(R.string.enter)-> {setTitle(R.string.enter)}
+            getString(R.string.exit)-> {setTitle(R.string.exit)}
         }
+        //Toast.makeText(this,  title, Toast.LENGTH_SHORT).show()
     }
 
     //画面がタッチされるとMainActivityに遷移する
@@ -29,7 +32,6 @@ class RoomConfirmationActivity : AppCompatActivity() {
             startActivity(intent)
         }
         return true
-        // return super.onTouchEvent(event)
     }
 }
 
