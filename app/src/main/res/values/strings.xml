@@ -2,8 +2,13 @@
     <string name="app_name">Laboratory Attendance System with Identification card</string>
     <string name="enter">入室</string>
     <string name="exit">退室</string>
+    <string name="register">登録</string>
+    <string name="edit">編集</string>
+    <string name="history">履歴</string>
     <string name="enter_label">学生証をスマホの裏側にスキャンして入室</string>
     <string name="exit_label">学生証をスマホの裏側にスキャンして退室</string>
+    <string name="register_label">学生証をスマホの裏側にスキャンして登録</string>
+    <string name="edit_label">学生証をスマホの裏側にスキャンして編集</string>
     <string name="enter_button">enter_button</string>
     <string name="exit_button">exit_button</string>
 </resources>

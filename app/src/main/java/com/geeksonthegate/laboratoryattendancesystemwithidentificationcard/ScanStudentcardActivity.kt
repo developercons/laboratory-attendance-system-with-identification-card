@@ -33,6 +33,10 @@ class ScanStudentcardActivity : AppCompatActivity() {
                 scanCardLabel.setText(R.string.exit_label)
                 setTitle(R.string.exit)
             }
+            R.id.register -> {
+                scanCardLabel.setText(R.string.register_label)
+                setTitle(R.string.register)
+            }
         }
 
         // NFCアダプタのインスタンスを生成
