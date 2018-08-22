@@ -24,6 +24,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
     /**
      * 前画面で押されたボタンのIDを格納するプロパティ
      */
+    // TODO: 宣言位置の再考
     var id: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,6 +79,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        // TODO: 初期値の再考
         var nextIntent = Intent(this, MainActivity::class.java)
 
         // NFCのEXTRA_IDを読み込み、前画面で押されたボタンと共に表示する
