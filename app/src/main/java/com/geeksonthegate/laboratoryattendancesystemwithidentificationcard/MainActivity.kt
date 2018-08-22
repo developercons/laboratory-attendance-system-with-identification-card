@@ -15,12 +15,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    private var realm: Realm? = null
+    private var mRealm: Realm? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        realm = Realm.getDefaultInstance()
+        mRealm = Realm.getDefaultInstance()
 
         enter.setOnClickListener { scanStudentcardButtonTapped(it) }
         exit.setOnClickListener { scanStudentcardButtonTapped(it) }
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
         } finally {
             if (labArray.size != 0) {
-                realm?.executeTransaction { for (item in labArray) it.insertOrUpdate(item) }
+                mRealm?.executeTransaction { for (item in labArray) it.insertOrUpdate(item) }
                 Toast.makeText(this, "研究室のダミーデータを追加しました", Toast.LENGTH_SHORT).show()
             }
         }
@@ -60,19 +60,18 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
         } finally {
             if (studentArray.size != 0) {
-                realm?.executeTransaction { for (item in studentArray) it.insertOrUpdate(item) }
-                Toast.makeText(this, listOf<Byte>(1, 16, 8, 0, 60, 20, -99, 1).toString(), Toast.LENGTH_SHORT).show()
+                mRealm?.executeTransaction { for (item in studentArray) it.insertOrUpdate(item) }
                 Toast.makeText(this, "学生のダミーデータを追加しました", Toast.LENGTH_SHORT).show()
             }
         }
-        realm?.executeTransaction { for (item in studentArray) it.insertOrUpdate(item) }
+        mRealm?.executeTransaction { for (item in studentArray) it.insertOrUpdate(item) }
 
         // 入退出ログ
         val logArray = mutableListOf<AttendanceLog>()
         logArray.add(AttendanceLog(listOf<Byte>(1, 16, 8, 0, 60, 20, -99, 1).toString(), GregorianCalendar(2018, 8, 20, 11, 0).time, GregorianCalendar(2018, 8, 20, 18, 0).time))
         logArray.add(AttendanceLog(listOf<Byte>(1, 16, 8, 0, 60, 20, -99, 1).toString(), GregorianCalendar(2018, 8, 20, 11, 0).time, GregorianCalendar(2018, 8, 20, 18, 0).time))
         logArray.add(AttendanceLog(listOf<Byte>(1, 18, 3, 18, -45, 24, 34, 28).toString(), GregorianCalendar(2018, 8, 20, 11, 0).time, GregorianCalendar(2018, 8, 20, 18, 0).time))
-        realm?.executeTransaction { for (item in logArray) it.insertOrUpdate(item) }
+        mRealm?.executeTransaction { for (item in logArray) it.insertOrUpdate(item) }
         Toast.makeText(this, "ログのダミーデータを追加しました", Toast.LENGTH_SHORT).show()
 
     }
