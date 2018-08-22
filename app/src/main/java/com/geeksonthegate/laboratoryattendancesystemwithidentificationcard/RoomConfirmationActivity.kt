@@ -25,7 +25,7 @@ class RoomConfirmationActivity : AppCompatActivity() {
 
     //画面がタッチされるとMainActivityに遷移する
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        if (event?.getAction() == MotionEvent.ACTION_DOWN) {
+        if (event?.action == MotionEvent.ACTION_DOWN) {
             val intent = Intent(this, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)

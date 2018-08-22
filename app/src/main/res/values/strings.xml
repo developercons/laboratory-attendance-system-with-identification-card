@@ -11,4 +11,5 @@
     <string name="edit_label">学生証をスマホの裏側にスキャンして編集</string>
     <string name="enter_button">enter_button</string>
     <string name="exit_button">exit_button</string>
+    <string name="background">background</string>
 </resources>
