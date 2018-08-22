@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         mRealm = Realm.getDefaultInstance()
 
-        enter.setOnClickListener{ scanStudentcardButtonTapped(it)}
-        exit.setOnClickListener{ scanStudentcardButtonTapped(it)}
+        enter.setOnClickListener { scanStudentcardButtonTapped(it) }
+        exit.setOnClickListener { scanStudentcardButtonTapped(it) }
 
         // 以降、テスト用ダミーデータの登録
         // 研究室

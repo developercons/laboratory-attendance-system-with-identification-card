@@ -15,12 +15,8 @@ class RoomConfirmationActivity : AppCompatActivity() {
 
         val id = intent.getIntExtra("scan_label", 0)
         when (id) {
-            R.id.enter -> {
-                setTitle(R.string.enter)
-            }
-            R.id.exit -> {
-                setTitle(R.string.exit)
-            }
+            R.id.enter -> {setTitle(R.string.enter)}
+            R.id.exit -> {setTitle(R.string.exit)}
         }
     }
 
