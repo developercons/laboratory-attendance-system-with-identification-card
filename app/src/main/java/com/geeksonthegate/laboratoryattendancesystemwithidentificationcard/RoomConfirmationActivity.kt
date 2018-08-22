@@ -13,10 +13,10 @@ class RoomConfirmationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_room_confirmation)
 
-        val id = intent.getIntExtra("scan_label", 0)
+        val id = intent.getStringExtra("scan_label")
         when (id) {
-            R.id.enter -> { setTitle(R.string.enter) }
-            R.id.exit -> { setTitle(R.string.exit) }
+            getString(R.string.enter)-> {setTitle(R.string.enter)}
+            getString(R.string.exit)-> {setTitle(R.string.exit)}
         }
     }
 
