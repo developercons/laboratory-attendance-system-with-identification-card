@@ -6,22 +6,25 @@ import android.nfc.NfcAdapter
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Student
+import io.realm.Realm
+import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_scan_studentcard.*
-import java.util.*
 
 class ScanStudentcardActivity : AppCompatActivity() {
 
     /**
      * NFCアダプタのインスタンスを格納するプロパティ
      */
-    private lateinit var mNfcAdapter: NfcAdapter
+    private lateinit var nfcAdapter: NfcAdapter
+    private lateinit var realm: Realm
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan_studentcard)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        realm = Realm.getDefaultInstance()
         // 前画面で押されたボタンに応じてラベルの内容を変更
         val id = intent.getIntExtra("scan_label", 0)
         when (id) {
@@ -38,7 +41,13 @@ class ScanStudentcardActivity : AppCompatActivity() {
         }
 
         // NFCアダプタのインスタンスを生成
-        mNfcAdapter = android.nfc.NfcAdapter.getDefaultAdapter(this)
+        nfcAdapter = android.nfc.NfcAdapter.getDefaultAdapter(this)
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        realm.close()
     }
 
     override fun onResume() {
@@ -48,14 +57,14 @@ class ScanStudentcardActivity : AppCompatActivity() {
         val intent = Intent(this, ScanStudentcardActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
         val pendingIntent: PendingIntent = PendingIntent.getActivity(applicationContext, 0, intent, 0)
-        mNfcAdapter.enableForegroundDispatch(this, pendingIntent, null, null)
+        nfcAdapter.enableForegroundDispatch(this, pendingIntent, null, null)
     }
 
     override fun onPause() {
         super.onPause()
 
         // このアプリが前面にない時はNFCがかざされても反応しないようにする
-        mNfcAdapter.disableForegroundDispatch(this)
+        nfcAdapter.disableForegroundDispatch(this)
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -67,10 +76,13 @@ class ScanStudentcardActivity : AppCompatActivity() {
             Toast.makeText(this, "Failed to read NFC", Toast.LENGTH_SHORT).show()
             return
         }
-        Toast.makeText(this, Arrays.toString(uid) + title, Toast.LENGTH_SHORT).show()
+        // TODO:汚いstringを直す
+        val scanStudent =  realm.where<Student>().contains("idm",uid.toString()).findFirst()
+        Toast.makeText(this, scanStudent.toString(), Toast.LENGTH_SHORT).show()
+
 
         // 次に表示するActivityへnfc_idと前画面に押されたボタンを送る
-        nextIntent.putExtra("nfc_idm", uid)
+        nextIntent.putExtra("scan_student", scanStudent)
         nextIntent.putExtra("scan_label", title)
         startActivity(nextIntent)
 
