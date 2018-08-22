@@ -5,4 +5,4 @@ import java.util.*
 
 open class CoreTime(var startCoreTime: Date? = null,
                     var endCoreTime: Date? = null,
-                    var isCoreDay: Boolean? = null) : RealmObject()
+                    var isCoreDay: Boolean? = true) : RealmObject()
