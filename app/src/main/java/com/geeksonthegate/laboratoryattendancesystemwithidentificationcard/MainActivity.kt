@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         mRealm = Realm.getDefaultInstance()
 
-        enter.setOnClickListener { scanStudentcartButtonTapped(it) }
-        exit.setOnClickListener { scanStudentcartButtonTapped(it) }
+        enter.setOnClickListener { scanStudentcardButtonTapped(it) }
+        exit.setOnClickListener { scanStudentcardButtonTapped(it) }
 
         // 以降、テスト用ダミーデータの登録
         // 研究室
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // カード読み取り(入退室)画面に遷移
-    private fun scanStudentcartButtonTapped(view: View?) {
+    private fun scanStudentcardButtonTapped(view: View?) {
         val intent = Intent(this, ScanStudentcardActivity::class.java)
         intent.putExtra("scan_label", view?.id)
         startActivity(intent)

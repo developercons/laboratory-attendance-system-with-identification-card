@@ -58,8 +58,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-
-        val nextIntent = Intent(this, MainActivity::class.java)
+        val nextIntent = Intent(this, RoomConfirmationActivity::class.java)
 
         // NFCのEXTRA_IDを読み込み、前画面で押されたボタンと共に表示する
         val uid: ByteArray = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID) ?: run {

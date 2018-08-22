@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.geeksonthegate.laboratoryattendancesystemwithidentificationcard">
+
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
     <supports-screens
-        android:smallScreens="true"
-        android:normalScreens="true"
+        android:anyDensity="true"
         android:largeScreens="true"
-        android:anyDensity="true" />
+        android:normalScreens="true"
+        android:smallScreens="true" />
     <application
         android:name=".LaboratoryAttendanceSystemwithIdentificationcard"
         android:allowBackup="true"
@@ -21,10 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ScanStudentcardActivity"></activity>
+        <activity android:name=".ScanStudentcardActivity" />
+        <activity android:name=".RoomConfirmationActivity"></activity>
     </application>
-    <uses-permission android:name="android.permission.NFC" />
-    <uses-feature
-        android:name="android.hardware.nfc"
-        android:required="true" />
+
 </manifest>
