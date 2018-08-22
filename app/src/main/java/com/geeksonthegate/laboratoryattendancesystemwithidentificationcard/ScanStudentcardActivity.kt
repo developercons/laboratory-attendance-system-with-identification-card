@@ -5,7 +5,6 @@ import android.content.Intent
 import android.nfc.NfcAdapter
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_scan_studentcard.*
 import java.util.*
