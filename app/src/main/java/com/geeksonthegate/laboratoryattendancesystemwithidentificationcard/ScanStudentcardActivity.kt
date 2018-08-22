@@ -98,7 +98,6 @@ class ScanStudentcardActivity : AppCompatActivity() {
                 nextIntent.putExtra("idm", idm)
             }
             R.id.edit -> {
-                nextIntent.putExtra("idm", idm)
                 nextIntent.putExtra("scan_student", scanStudent)
             }
         }
