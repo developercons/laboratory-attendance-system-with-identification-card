@@ -12,4 +12,12 @@
     <string name="enter_button">enter_button</string>
     <string name="exit_button">exit_button</string>
     <string name="background">background</string>
+    <string name="lab_lavel">所属</string>
+    <string name="name_label">氏名</string>
+    <string name="studentId_label">学籍番号</string>
+    <string name="coreTime_label">コアタイム</string>
+    <string name="start_end">〜</string>
+    <string name="access_time_label">入退室時間</string>
+    <string name="confirmation_label_1">こんにちは</string>
+    <string name="confirmaiton_label_2">確認しました</string>
 </resources>
