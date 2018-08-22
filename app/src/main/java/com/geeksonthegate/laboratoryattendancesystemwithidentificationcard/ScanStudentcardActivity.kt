@@ -84,9 +84,6 @@ class ScanStudentcardActivity : AppCompatActivity() {
         val scanStudent = realm.where<Student>().contains("idm",Arrays.toString(idm)).findFirst()
         Toast.makeText(this, scanStudent.toString(), Toast.LENGTH_SHORT).show()
 
-        // 次に表示するActivityへnfc_idと前画面に押されたボタンを送る
-        nextIntent.putExtra("nfc_idm", idm)
-
         nextIntent.putExtra("scan_label", title)
         val id = intent.getIntExtra("scan_label", 0)
         when (id) {
