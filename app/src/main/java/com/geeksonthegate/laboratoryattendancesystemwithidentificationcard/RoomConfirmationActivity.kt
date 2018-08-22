@@ -15,14 +15,14 @@ class RoomConfirmationActivity : AppCompatActivity() {
 
         val id = intent.getIntExtra("scan_label", 0)
         when (id) {
-            R.id.enter -> {setTitle(R.string.enter)}
-            R.id.exit -> {setTitle(R.string.exit)}
+            R.id.enter -> { setTitle(R.string.enter) }
+            R.id.exit -> { setTitle(R.string.exit) }
         }
     }
 
     //画面がタッチされるとMainActivityに遷移する
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        if (event?.getAction() == MotionEvent.ACTION_DOWN) {
+        if (event?.action == MotionEvent.ACTION_DOWN) {
             val intent = Intent(this, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)

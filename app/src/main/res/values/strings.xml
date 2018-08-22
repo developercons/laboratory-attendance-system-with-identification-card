@@ -6,4 +6,5 @@
     <string name="exit_label">学生証をスマホの裏側にスキャンして退室</string>
     <string name="enter_button">enter_button</string>
     <string name="exit_button">exit_button</string>
+    <string name="background">background</string>
 </resources>

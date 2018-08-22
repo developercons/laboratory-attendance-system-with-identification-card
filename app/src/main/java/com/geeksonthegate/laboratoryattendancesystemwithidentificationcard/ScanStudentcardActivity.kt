@@ -5,6 +5,7 @@ import android.content.Intent
 import android.nfc.NfcAdapter
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_scan_studentcard.*
 import java.util.*
@@ -28,10 +29,12 @@ class ScanStudentcardActivity : AppCompatActivity() {
             R.id.enter -> {
                 scanCardLabel.setText(R.string.enter_label)
                 setTitle(R.string.enter)
+                background.setImageResource(R.drawable.bg_enter)
             }
             R.id.exit -> {
                 scanCardLabel.setText(R.string.exit_label)
                 setTitle(R.string.exit)
+                background.setImageResource(R.drawable.bg_exit)
             }
         }
 
