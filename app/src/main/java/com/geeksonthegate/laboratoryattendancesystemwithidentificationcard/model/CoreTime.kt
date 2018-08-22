@@ -3,7 +3,6 @@ package com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.mode
 import io.realm.RealmObject
 import java.util.*
 
-open class CoreTime(var day: Int? = null,
-               var startCoreTime: Date? = null,
-               var endCoreTime: Date? = null,
-               var isCoreDay: Boolean? = null) : RealmObject()
+open class CoreTime(var startCoreTime: Date? = null,
+                    var endCoreTime: Date? = null,
+                    var isCoreDay: Boolean? = true) : RealmObject()
