@@ -12,4 +12,20 @@
     <string name="enter_button">enter_button</string>
     <string name="exit_button">exit_button</string>
     <string name="background">background</string>
+    <string name="belong_label">所属</string>
+    <string name="belong_hint">所属を選択してください</string>
+    <string name="name_label">氏名</string>
+    <string name="name_hint">氏名を入力してください</string>
+    <string name="student_id_label">学籍番号</string>
+    <string name="student_id_hint">学籍番号を入力してください</string>
+    <string name="core_time_label">コアタイム</string>
+    <string name="core_time_custom_label">カスタム</string>
+    <string name="default_time">00:00</string>
+    <string name="monday">月曜日</string>
+    <string name="tuesday">火曜日</string>
+    <string name="wednesday">水曜日</string>
+    <string name="thursday">木曜日</string>
+    <string name="friday">金曜日</string>
+    <string name="saturday">土曜日</string>
+    <string name="sunday">日曜日</string>
 </resources>

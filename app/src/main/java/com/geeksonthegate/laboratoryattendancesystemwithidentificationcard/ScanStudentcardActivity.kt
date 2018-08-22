@@ -20,6 +20,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
      * NFCアダプタのインスタンスを格納するプロパティ
      */
     private lateinit var nfcAdapter: NfcAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan_studentcard)
@@ -81,7 +82,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
             Toast.makeText(this, "Failed to read NFC", Toast.LENGTH_SHORT).show()
             return
         }
-        val scanStudent = realm.where<Student>().contains("idm",Arrays.toString(idm)).findFirst()
+        val scanStudent = realm.where<Student>().contains("idm", Arrays.toString(idm)).findFirst()
         Toast.makeText(this, scanStudent.toString(), Toast.LENGTH_SHORT).show()
 
         nextIntent.putExtra("scan_label", title)
@@ -97,8 +98,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
                 nextIntent.putExtra("idm", idm)
             }
             R.id.edit -> {
-                scanCardLabel.setText(R.string.edit_label)
-                setTitle(R.string.edit)
+                nextIntent.putExtra("scan_student", scanStudent)
             }
         }
         startActivity(nextIntent)
