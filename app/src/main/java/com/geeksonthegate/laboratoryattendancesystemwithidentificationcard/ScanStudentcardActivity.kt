@@ -6,28 +6,30 @@ import android.nfc.NfcAdapter
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Student
 import io.realm.Realm
+import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Student
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_scan_studentcard.*
 import java.util.*
 
 class ScanStudentcardActivity : AppCompatActivity() {
 
+    private lateinit var realm: Realm
+
     /**
      * NFCアダプタのインスタンスを格納するプロパティ
      */
     private lateinit var nfcAdapter: NfcAdapter
-private lateinit var realm: Realm
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan_studentcard)
+        realm = Realm.getDefaultInstance()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         realm = Realm.getDefaultInstance()
 
-        // 前画面で押されたボタンに応じてラベルの内容を変更
         val id = intent.getIntExtra("scan_label", 0)
+        // 前画面で押されたボタンに応じてラベルの内容を変更
         when (id) {
             R.id.enter -> {
                 scanCardLabel.setText(R.string.enter_label)
@@ -53,10 +55,6 @@ private lateinit var realm: Realm
         nfcAdapter = android.nfc.NfcAdapter.getDefaultAdapter(this)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        realm.close()
-    }
     override fun onResume() {
         super.onResume()
 
@@ -79,19 +77,36 @@ private lateinit var realm: Realm
         val nextIntent = Intent(this, RoomConfirmationActivity::class.java)
 
         // NFCのEXTRA_IDを読み込み、前画面で押されたボタンと共に表示する
-        val uid: ByteArray = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID) ?: run {
+        val idm: ByteArray = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID) ?: run {
             Toast.makeText(this, "Failed to read NFC", Toast.LENGTH_SHORT).show()
             return
         }
-        //Toast.makeText(this, Arrays.toString(uid) + title, Toast.LENGTH_SHORT).show()
-        val scanStudent = realm.where<Student>().contains("idm",Arrays.toString(uid)).findFirst()
+        val scanStudent = realm.where<Student>().contains("idm",Arrays.toString(idm)).findFirst()
         Toast.makeText(this, scanStudent.toString(), Toast.LENGTH_SHORT).show()
 
-
-        // 次に表示するActivityへnfc_idと前画面に押されたボタンを送る
-        nextIntent.putExtra("nfc_idm", uid)
         nextIntent.putExtra("scan_label", title)
+        val id = intent.getIntExtra("scan_label", 0)
+        when (id) {
+            R.id.enter -> {
+                nextIntent.putExtra("scan_student", scanStudent)
+            }
+            R.id.exit -> {
+                nextIntent.putExtra("scan_student", scanStudent)
+            }
+            R.id.register -> {
+                nextIntent.putExtra("idm", idm)
+            }
+            R.id.edit -> {
+                scanCardLabel.setText(R.string.edit_label)
+                setTitle(R.string.edit)
+            }
+        }
         startActivity(nextIntent)
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        realm.close()
     }
 }

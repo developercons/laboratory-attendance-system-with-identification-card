@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Laboratory Attendance System with Identification card</string>
+    <string name="app_name">ラボ入退室管理</string>
     <string name="enter">入室</string>
     <string name="exit">退室</string>
     <string name="register">登録</string>
