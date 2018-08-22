@@ -6,10 +6,13 @@ import android.nfc.NfcAdapter
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_scan_studentcard.*
 import java.util.*
 
 class ScanStudentcardActivity : AppCompatActivity() {
+
+    private lateinit var realm: Realm
 
     /**
      * NFCアダプタのインスタンスを格納するプロパティ
@@ -19,6 +22,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan_studentcard)
+        realm = Realm.getDefaultInstance()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -75,12 +79,19 @@ class ScanStudentcardActivity : AppCompatActivity() {
             Toast.makeText(this, "Failed to read NFC", Toast.LENGTH_SHORT).show()
             return
         }
+
         Toast.makeText(this, Arrays.toString(uid) + title, Toast.LENGTH_SHORT).show()
+
+
 
         // 次に表示するActivityへnfc_idと前画面に押されたボタンを送る
         nextIntent.putExtra("nfc_idm", uid)
         nextIntent.putExtra("scan_label", title)
         startActivity(nextIntent)
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        realm.close()
     }
 }

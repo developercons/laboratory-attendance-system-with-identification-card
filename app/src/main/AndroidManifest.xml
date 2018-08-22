@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ScanStudentcardActivity" />
-        <activity android:name=".RoomConfirmationActivity"></activity>
+        <activity android:name=".RoomConfirmationActivity" />
     </application>
 
 </manifest>
