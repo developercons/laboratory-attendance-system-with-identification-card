@@ -16,8 +16,6 @@ class RoomConfirmationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_room_confirmation)
 
         val id = intent.getStringExtra("scan_label")
-        //val title = intent.getStringExtra("scan_label")
-        //setTitle(title)
         when (id) {
             getString(R.string.enter)-> {setTitle(R.string.enter)}
             getString(R.string.exit)-> {setTitle(R.string.exit)}
@@ -34,7 +32,6 @@ class RoomConfirmationActivity : AppCompatActivity() {
             startActivity(intent)
         }
         return true
-        // return super.onTouchEvent(event)
     }
 }
 
