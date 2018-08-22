@@ -12,4 +12,13 @@
     <string name="enter_button">enter_button</string>
     <string name="exit_button">exit_button</string>
     <string name="background">background</string>
+    <string name="belong_label">所属</string>
+    <string name="belong_hint">所属を選択してください</string>
+    <string name="name_label">氏名</string>
+    <string name="name_hint">氏名を入力してください</string>
+    <string name="student_id_label">学籍番号</string>
+    <string name="student_id_hint">学籍番号を入力してください</string>
+    <string name="core_time_label">コアタイム</string>
+    <string name="core_time_custom_label">カスタム</string>
+    <string name="default_time">00:00</string>
 </resources>
