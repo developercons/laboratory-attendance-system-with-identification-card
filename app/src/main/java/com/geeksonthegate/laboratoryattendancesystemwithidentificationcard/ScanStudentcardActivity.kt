@@ -14,7 +14,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
     /**
      * NFCアダプタのインスタンスを格納するプロパティ
      */
-    private lateinit var mNfcAdapter: NfcAdapter
+    private lateinit var nfcAdapter: NfcAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +46,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
         }
 
         // NFCアダプタのインスタンスを生成
-        mNfcAdapter = android.nfc.NfcAdapter.getDefaultAdapter(this)
+        nfcAdapter = android.nfc.NfcAdapter.getDefaultAdapter(this)
     }
 
     override fun onResume() {
@@ -56,14 +56,14 @@ class ScanStudentcardActivity : AppCompatActivity() {
         val intent = Intent(this, ScanStudentcardActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
         val pendingIntent: PendingIntent = PendingIntent.getActivity(applicationContext, 0, intent, 0)
-        mNfcAdapter.enableForegroundDispatch(this, pendingIntent, null, null)
+        nfcAdapter.enableForegroundDispatch(this, pendingIntent, null, null)
     }
 
     override fun onPause() {
         super.onPause()
 
         // このアプリが前面にない時はNFCがかざされても反応しないようにする
-        mNfcAdapter.disableForegroundDispatch(this)
+        nfcAdapter.disableForegroundDispatch(this)
     }
 
     override fun onNewIntent(intent: Intent) {
