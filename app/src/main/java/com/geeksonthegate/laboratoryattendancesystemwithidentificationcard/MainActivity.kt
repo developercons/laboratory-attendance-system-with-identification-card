@@ -27,53 +27,6 @@ class MainActivity : AppCompatActivity() {
         register.setOnClickListener { scanStudentcardButtonTapped(it) }
         edit.setOnClickListener { scanStudentcardButtonTapped(it) }
         history.setOnClickListener {}
-
-        // 以降、テスト用ダミーデータの登録
-        // 研究室
-        val coretimeArray = RealmList<CoreTime>()
-        for (i in 0..6) {
-            coretimeArray.add(CoreTime(GregorianCalendar(2000, 0, 1, 11, 0).time,
-                    GregorianCalendar(2000, 0, 1, 11, 0).time, false))
-        }
-        val labArray = mutableListOf<Lab>()
-        try {
-            labArray.add(Lab(labName = "福田研究室", coretimeArray = coretimeArray))
-            labArray.add(Lab(labName = "菅谷研究室", coretimeArray = coretimeArray))
-            labArray.add(Lab(labName = "宇佐美研究室", coretimeArray = coretimeArray))
-            labArray.add(Lab(labName = "平川研究室", coretimeArray = coretimeArray))
-        } catch (exception: Exception) {
-            Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
-        } finally {
-            if (labArray.size != 0) {
-                realm?.executeTransaction { for (item in labArray) it.insertOrUpdate(item) }
-                Toast.makeText(this, "研究室のダミーデータを追加しました", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        // 学生
-        val studentArray = mutableListOf<Student>()
-        try {
-            studentArray.add(Student(listOf<Byte>(1, 16, 14, 0, 60, 20, -31, 0).toString(), "AL15026", "岸本太郎", Lab(labName = "菅谷研究室", coretimeArray = coretimeArray)))
-            studentArray.add(Student(listOf<Byte>(1, 16, 8, 0, 60, 20, -99, 1).toString(), "AL15082", "迫真古川先輩", Lab(labName = "平川研究室", coretimeArray = coretimeArray)))
-            studentArray.add(Student(listOf<Byte>(1, 18, 3, 18, -45, 24, 34, 28).toString(), "AL15065", "Gitの鬼", Lab(labName = "福田研究室", coretimeArray = coretimeArray)))
-        } catch (exception: Exception) {
-            Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
-        } finally {
-            if (studentArray.size != 0) {
-                realm?.executeTransaction { for (item in studentArray) it.insertOrUpdate(item) }
-                Toast.makeText(this, "学生のダミーデータを追加しました", Toast.LENGTH_SHORT).show()
-            }
-        }
-        realm?.executeTransaction { for (item in studentArray) it.insertOrUpdate(item) }
-
-        // 入退出ログ
-        val logArray = mutableListOf<AttendanceLog>()
-        logArray.add(AttendanceLog(listOf<Byte>(1, 16, 8, 0, 60, 20, -99, 1).toString(), GregorianCalendar(2018, 8, 20, 11, 0).time, GregorianCalendar(2018, 8, 20, 18, 0).time))
-        logArray.add(AttendanceLog(listOf<Byte>(1, 16, 8, 0, 60, 20, -99, 1).toString(), GregorianCalendar(2018, 8, 20, 11, 0).time, GregorianCalendar(2018, 8, 20, 18, 0).time))
-        logArray.add(AttendanceLog(listOf<Byte>(1, 18, 3, 18, -45, 24, 34, 28).toString(), GregorianCalendar(2018, 8, 20, 11, 0).time, GregorianCalendar(2018, 8, 20, 18, 0).time))
-        realm?.executeTransaction { for (item in logArray) it.insertOrUpdate(item) }
-        Toast.makeText(this, "ログのダミーデータを追加しました", Toast.LENGTH_SHORT).show()
-
     }
 
     // カード読み取り(入退室)画面に遷移
