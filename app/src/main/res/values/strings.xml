@@ -17,7 +17,7 @@
     <string name="name_hint">氏名を入力してください</string>
     <string name="name_label">氏名</string>
     <string name="studentId_label">学籍番号</string>
-    <string name="coreTime_label">コアタイム</string>
+    <string name="coretime_label">コアタイム</string>
     <string name="start_end">〜</string>
     <string name="access_time_label">入退室時間</string>
     <string name="confirmation_label_1">こんにちは</string>
@@ -34,21 +34,21 @@
     <string name="friday">金曜日</string>
     <string name="saturday">土曜日</string>
     <string name="sunday">日曜日</string>
-    <string name="coreTime_start">XX:XX</string>
-    <string name="coreTime_end">XX:XX</string>
-    <string name="monday_coreTime_start">XX:XX</string>
-    <string name="monday_coreTime_end">XX:XX</string>
-    <string name="tuesday_coreTime_start">XX:XX</string>
-    <string name="tuesday_coreTime_end">XX:XX</string>
-    <string name="wednesday_coreTime_start">XX:XX</string>
-    <string name="wednesday_coreTime_end">XX:XX</string>
-    <string name="thursday_coreTime_start">XX:XX</string>
-    <string name="thursday_coreTime_end">XX:XX</string>
-    <string name="friday_coreTime_start">XX:XX</string>
-    <string name="friday_coreTime_end">XX:XX</string>
-    <string name="saturday_coreTime_start">XX:XX</string>
-    <string name="saturday_coreTime_end">XX:XX</string>
-    <string name="sunday_coreTime_start">XX:XX</string>
-    <string name="sunday_coreTime_end">XX:XX</string>
+    <string name="coretime_start">XX:XX</string>
+    <string name="coretime_end">XX:XX</string>
+    <string name="monday_coretime_start">XX:XX</string>
+    <string name="monday_coretime_end">XX:XX</string>
+    <string name="tuesday_coretime_start">XX:XX</string>
+    <string name="tuesday_coretime_end">XX:XX</string>
+    <string name="wednesday_coretime_start">XX:XX</string>
+    <string name="wednesday_coretime_end">XX:XX</string>
+    <string name="thursday_coretime_start">XX:XX</string>
+    <string name="thursday_coretime_end">XX:XX</string>
+    <string name="friday_coretime_start">XX:XX</string>
+    <string name="friday_coretime_end">XX:XX</string>
+    <string name="saturday_coretime_start">XX:XX</string>
+    <string name="saturday_coretime_end">XX:XX</string>
+    <string name="sunday_coretime_start">XX:XX</string>
+    <string name="sunday_coretime_end">XX:XX</string>
 
 </resources>

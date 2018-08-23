@@ -8,30 +8,30 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.R
-import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.CoreTime
+import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.coretime
 import io.realm.OrderedRealmCollection
 import io.realm.RealmBaseAdapter
 import kotlinx.android.synthetic.main.coretime_row.view.*
 import java.lang.IllegalStateException
 import java.text.SimpleDateFormat
 
-class CoreTimeRealmAdapter(@Nullable data: OrderedRealmCollection<CoreTime>) : RealmBaseAdapter<CoreTime>(data) {
+class coretimeRealmAdapter(@Nullable data: OrderedRealmCollection<coretime>) : RealmBaseAdapter<coretime>(data) {
     companion object {
         class ViewHolder(var day: TextView,
-                         var startCoreTime: EditText,
-                         var endCoreTime: EditText,
+                         var startcoretime: EditText,
+                         var endcoretime: EditText,
                          var isCoreDay: CheckBox)
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view = convertView ?: LayoutInflater.from(parent?.context).inflate(
                 R.layout.coretime_row, parent, false).apply {
-            this.tag = ViewHolder(this.dayLabel, this.startCoreTimeBox,
-                    this.endCoreTimeBox, this.isCoreDayBox)
+            this.tag = ViewHolder(this.dayLabel, this.startcoretimeBox,
+                    this.endcoretimeBox, this.isCoreDayBox)
         }
         val viewHolder = view.tag as ViewHolder
         val sdf = SimpleDateFormat("HH:dd")
-        val coreTime = adapterData?.get(position) ?: throw IllegalStateException("Error")
+        val coretime = adapterData?.get(position) ?: throw IllegalStateException("Error")
         viewHolder.day.setText(when (position) {
             0 -> R.string.monday
             1 -> R.string.tuesday
@@ -42,9 +42,9 @@ class CoreTimeRealmAdapter(@Nullable data: OrderedRealmCollection<CoreTime>) : R
             6 -> R.string.sunday
             else -> throw IllegalStateException("Error")
         })
-        viewHolder.startCoreTime.setText(sdf.format(coreTime.endCoreTime))
-        viewHolder.endCoreTime.setText(sdf.format(coreTime.endCoreTime))
-        viewHolder.isCoreDay.isChecked = coreTime.isCoreDay ?: false
+        viewHolder.startcoretime.setText(sdf.format(coretime.endcoretime))
+        viewHolder.endcoretime.setText(sdf.format(coretime.endcoretime))
+        viewHolder.isCoreDay.isChecked = coretime.isCoreDay ?: false
         return view as View
     }
 }

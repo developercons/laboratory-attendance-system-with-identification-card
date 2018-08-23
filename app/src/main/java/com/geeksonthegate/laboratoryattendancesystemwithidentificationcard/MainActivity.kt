@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.AttendanceLog
-import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.CoreTime
+import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.coretime
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Lab
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Student
 import io.realm.Realm
@@ -30,17 +30,17 @@ class MainActivity : AppCompatActivity() {
 
         // 以降、テスト用ダミーデータの登録
         // 研究室
-        val coreTimeArray = RealmList<CoreTime>()
+        val coretimeArray = RealmList<coretime>()
         for (i in 0..6) {
-            coreTimeArray.add(CoreTime(GregorianCalendar(2000, 0, 1, 11, 0).time,
+            coretimeArray.add(coretime(GregorianCalendar(2000, 0, 1, 11, 0).time,
                     GregorianCalendar(2000, 0, 1, 11, 0).time, false))
         }
         val labArray = mutableListOf<Lab>()
         try {
-            labArray.add(Lab(labName = "福田研究室", coreTimeArray = coreTimeArray))
-            labArray.add(Lab(labName = "菅谷研究室", coreTimeArray = coreTimeArray))
-            labArray.add(Lab(labName = "宇佐美研究室", coreTimeArray = coreTimeArray))
-            labArray.add(Lab(labName = "平川研究室", coreTimeArray = coreTimeArray))
+            labArray.add(Lab(labName = "福田研究室", coretimeArray = coretimeArray))
+            labArray.add(Lab(labName = "菅谷研究室", coretimeArray = coretimeArray))
+            labArray.add(Lab(labName = "宇佐美研究室", coretimeArray = coretimeArray))
+            labArray.add(Lab(labName = "平川研究室", coretimeArray = coretimeArray))
         } catch (exception: Exception) {
             Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
         } finally {
@@ -53,9 +53,9 @@ class MainActivity : AppCompatActivity() {
         // 学生
         val studentArray = mutableListOf<Student>()
         try {
-            studentArray.add(Student(listOf<Byte>(1, 16, 14, 0, 60, 20, -31, 0).toString(), "AL15026", "岸本太郎", Lab(labName = "菅谷研究室", coreTimeArray = coreTimeArray)))
-            studentArray.add(Student(listOf<Byte>(1, 16, 8, 0, 60, 20, -99, 1).toString(), "AL15082", "迫真古川先輩", Lab(labName = "平川研究室", coreTimeArray = coreTimeArray)))
-            studentArray.add(Student(listOf<Byte>(1, 18, 3, 18, -45, 24, 34, 28).toString(), "AL15065", "Gitの鬼", Lab(labName = "福田研究室", coreTimeArray = coreTimeArray)))
+            studentArray.add(Student(listOf<Byte>(1, 16, 14, 0, 60, 20, -31, 0).toString(), "AL15026", "岸本太郎", Lab(labName = "菅谷研究室", coretimeArray = coretimeArray)))
+            studentArray.add(Student(listOf<Byte>(1, 16, 8, 0, 60, 20, -99, 1).toString(), "AL15082", "迫真古川先輩", Lab(labName = "平川研究室", coretimeArray = coretimeArray)))
+            studentArray.add(Student(listOf<Byte>(1, 18, 3, 18, -45, 24, 34, 28).toString(), "AL15065", "Gitの鬼", Lab(labName = "福田研究室", coretimeArray = coretimeArray)))
         } catch (exception: Exception) {
             Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
         } finally {
