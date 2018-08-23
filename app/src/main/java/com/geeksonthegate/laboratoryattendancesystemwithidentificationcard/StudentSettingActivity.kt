@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
 import android.text.format.DateFormat
+import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.TextView
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.CoreTime
@@ -47,6 +48,14 @@ class StudentSettingActivity : AppCompatActivity() {
 
         // 前画面から受け取ったIDmで検索する
         var student: Student? = realm.where(Student::class.java).equalTo("idm", Arrays.toString(idm)).findFirst()
+
+        // 研究室一覧を受け取り、Spinner内のリストを生成
+        val results = realm.where(Lab::class.java).findAll()
+        val labList = results.subList(0, results.size)
+        val labNameList = mutableListOf<String>()
+        labList.forEach { labNameList.add(it.labName ?: "") }
+        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_2, labNameList)
+        lab_spinner.adapter = adapter
 
         // コアタイム一覧を生成するメソッドに渡す一覧を生成・初期化
         val coreTimeList = mutableListOf<CoreTime>()
@@ -93,6 +102,9 @@ class StudentSettingActivity : AppCompatActivity() {
             startCoreTimeLabelList[i].text = DateFormat.format("kk:mm", coreTimeList[i].startCoreTime)
             endCoreTimeLabelList[i].text = DateFormat.format("kk:mm", coreTimeList[i].endCoreTime)
             isCoreDayBoxList[i].isChecked = coreTimeList[i].isCoreDay ?: true
+            startCoreTimeLabelList[i].setOnClickListener {
+                val nextIntent = Intent(this, LabSettingActivity::class.java)
+            }
         }
     }
 }
