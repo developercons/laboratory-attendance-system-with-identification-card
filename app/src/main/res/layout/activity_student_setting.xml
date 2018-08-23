@@ -16,12 +16,12 @@
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/bg_form" />
 
     <TextView
@@ -43,20 +43,6 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/lab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="28dp"
-        android:text="TextView"
-        android:textColor="@color/colorAccent"
-        android:textSize="27dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lab_label"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
         android:id="@+id/name_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,18 +61,6 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:text="TextView"
-        android:textColor="@color/colorAccent"
-        android:textSize="27dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_label"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
         android:id="@+id/studentId_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -99,18 +73,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/studentId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:text="TextView"
-        android:textColor="@color/colorAccent"
-        android:textSize="27dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentId_label"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -669,5 +631,41 @@
         app:layout_constraintStart_toEndOf="@+id/sunday_coretime_end"
         app:layout_constraintTop_toBottomOf="@+id/saturday_coretime_end"
         app:layout_constraintVertical_bias="0.615" />
+
+    <Spinner
+        android:id="@+id/lab_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lab_label" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="108dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:textColor="@color/colorAccent"
+        android:textSize="22sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/studntid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="168dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:textColor="@color/colorAccent"
+        android:textSize="22dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
