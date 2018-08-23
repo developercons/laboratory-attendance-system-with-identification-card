@@ -1,16 +1,21 @@
 package com.geeksonthegate.laboratoryattendancesystemwithidentificationcard
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.app.PendingIntent
+import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.nfc.NfcAdapter
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import io.realm.Realm
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Student
+import io.realm.Realm
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_scan_studentcard.*
 import java.util.*
+import android.support.v4.app.DialogFragment
+
 
 class ScanStudentcardActivity : AppCompatActivity() {
 
@@ -91,6 +96,14 @@ class ScanStudentcardActivity : AppCompatActivity() {
         // タイトルによって次に飛ぶActivityを選択する
         when (id) {
             R.id.enter -> {
+                if (isRegisteredCard(idm) === false)
+                {
+                    AlertDialog.Builder(this)
+                            .setTitle("エラー")
+                            .setPositiveButton("ok"){ dialog, which ->
+                            }.show()
+                }
+
                 nextIntent = Intent(this, RoomConfirmationActivity::class.java)
             }
             R.id.exit -> {
@@ -111,5 +124,15 @@ class ScanStudentcardActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         realm.close()
+    }
+
+    /*登録済みの学生証かどうかを判断する
+    * 登録済みなら true
+    * 未登録ならfalseを返す*/
+    private fun isRegisteredCard(idm: ByteArray): Boolean {
+        return when{
+            realm.where<Student>().contains("idm", Arrays.toString(idm)).findAll().isEmpty() -> false
+            else -> true
+        }
     }
 }

@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         try {
             studentArray.add(Student(listOf<Byte>(1, 16, 14, 0, 60, 20, -31, 0).toString(), "AL15026", "岸本太郎", Lab(labName = "菅谷研究室", coretimeArray = coretimeArray)))
             studentArray.add(Student(listOf<Byte>(1, 16, 8, 0, 60, 20, -99, 1).toString(), "AL15082", "迫真古川先輩", Lab(labName = "平川研究室", coretimeArray = coretimeArray)))
-            studentArray.add(Student(listOf<Byte>(1, 18, 3, 18, -45, 24, 34, 28).toString(), "AL15065", "Gitの鬼", Lab(labName = "福田研究室", coretimeArray = coretimeArray)))
         } catch (exception: Exception) {
             Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
         } finally {

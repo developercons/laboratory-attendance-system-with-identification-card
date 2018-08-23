@@ -2,12 +2,6 @@ package com.geeksonthegate.laboratoryattendancesystemwithidentificationcard
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.adapter.coretimeRealmAdapter
-import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.CoreTime
-import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Student
-import io.realm.RealmList
-import kotlinx.android.synthetic.main.activity_student_setting.*
-import java.util.*
 
 class StudentSettingActivity : AppCompatActivity() {
 
