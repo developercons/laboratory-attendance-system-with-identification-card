@@ -16,6 +16,10 @@ class RoomConfirmationActivity : AppCompatActivity() {
             getString(R.string.enter)-> {setTitle(R.string.enter)}
             getString(R.string.exit)-> {setTitle(R.string.exit)}
         }
+        val cal = Calendar.getInstance()
+        val hour:Int = cal.get(Calendar.HOUR_OF_DAY)
+        val minutes:Int = cal.get(Calendar.MINUTE)
+        Toast.makeText(this,hour.toString(),Toast.LENGTH_SHORT).show()
         //Toast.makeText(this,  title, Toast.LENGTH_SHORT).show()
     }
 
