@@ -31,7 +31,8 @@
         </activity>
         <activity android:name=".ScanStudentcardActivity" />
         <activity android:name=".RoomConfirmationActivity" />
-        <activity android:name=".StudentSettingActivity"></activity>
+        <activity android:name=".StudentSettingActivity" />
+        <activity android:name=".LabSettingActivity"></activity>
     </application>
 
 </manifest>
