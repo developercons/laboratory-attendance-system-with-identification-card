@@ -164,7 +164,7 @@
         app:layout_constraintTop_toBottomOf="@+id/core_time_custom_label" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/sunday_coreTime_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -180,7 +180,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toEndOf="@+id/sunday_coreTime_start"
         app:layout_constraintTop_toBottomOf="@+id/core_time_custom_label" />
 
     <CheckBox
@@ -214,14 +214,14 @@
         app:layout_constraintTop_toBottomOf="@+id/monday_start_core_time_label" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/thursday_coreTime_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/tuesday_start_core_time_label"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/sunday_coreTime_start" />
 
     <TextView
         android:id="@+id/tuesday_end_core_time_label"
@@ -230,7 +230,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintStart_toEndOf="@+id/thursday_coreTime_end"
         app:layout_constraintTop_toBottomOf="@+id/monday_end_core_time_label" />
 
     <CheckBox
@@ -264,14 +264,14 @@
         app:layout_constraintTop_toBottomOf="@+id/tuesday_start_core_time_label" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/friday_coreTime_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/wednesday_start_core_time_label"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/thursday_coreTime_end" />
 
     <TextView
         android:id="@+id/wednesday_end_core_time_label"
@@ -280,7 +280,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintStart_toEndOf="@+id/friday_coreTime_end"
         app:layout_constraintTop_toBottomOf="@+id/tuesday_end_core_time_label" />
 
     <CheckBox
@@ -314,14 +314,14 @@
         app:layout_constraintTop_toBottomOf="@+id/wednesday_start_core_time_label" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/saturday_coreTime_end"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/thursday_start_core_time_label"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintTop_toBottomOf="@+id/friday_coreTime_end" />
 
     <TextView
         android:id="@+id/thursday_end_core_time_label"
@@ -330,7 +330,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintStart_toEndOf="@+id/saturday_coreTime_end"
         app:layout_constraintTop_toBottomOf="@+id/wednesday_end_core_time_label" />
 
     <CheckBox
@@ -371,7 +371,7 @@
         android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/friday_start_core_time_label"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        app:layout_constraintTop_toBottomOf="@+id/saturday_coreTime_end" />
 
     <TextView
         android:id="@+id/friday_end_core_time_label"

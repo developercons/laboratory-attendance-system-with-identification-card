@@ -8,25 +8,24 @@
 
     <ImageView
         android:id="@+id/background"
-        android:layout_width="398dp"
-        android:layout_height="601dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/background"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.595"
         app:srcCompat="@drawable/bg_enter_confirmation" />
+
 
     <TextView
         android:id="@+id/lab_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="8dp"
         android:text="@string/lab_label"
@@ -54,13 +53,16 @@
         android:id="@+id/name_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="92dp"
         android:text="@string/name_label"
         android:textColor="@color/colorAccent"
         android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -79,13 +81,16 @@
         android:id="@+id/studentId_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="160dp"
         android:text="@string/studentId_label"
         android:textColor="@color/colorAccent"
         android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -104,13 +109,16 @@
         android:id="@+id/coreTime_label"
         android:layout_width="wrap_content"
         android:layout_height="15dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="228dp"
         android:text="@string/coreTime_label"
         android:textColor="@color/colorAccent"
         android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -135,26 +143,28 @@
         android:id="@+id/access_time_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="336dp"
         android:text="@string/access_time_label"
         android:textColor="@color/colorAccent"
         android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/currentTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="48dp"
         android:text="TextView"
+        android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textSize="65dp"
-        app:layout_constraintEnd_toEndOf="@+id/access_time_label"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="@+id/access_time_label"
         app:layout_constraintTop_toTopOf="@+id/access_time_label" />
@@ -163,26 +173,32 @@
         android:id="@+id/confirmaiton_label_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="480dp"
         android:text="@string/confirmation_label_1"
         android:textColor="@color/colorAccent"
         android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/confirmaiton_label_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginStart="188dp"
         android:layout_marginTop="512dp"
         android:text="@string/confirmation_label_2"
         android:textColor="@color/colorAccent"
         android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <TextView
