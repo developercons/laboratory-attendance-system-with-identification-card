@@ -3,7 +3,7 @@ package com.geeksonthegate.laboratoryattendancesystemwithidentificationcard
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.adapter.coretimeRealmAdapter
-import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.coretime
+import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.CoreTime
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Student
 import io.realm.RealmList
 import kotlinx.android.synthetic.main.activity_student_setting.*
@@ -17,9 +17,9 @@ class StudentSettingActivity : AppCompatActivity() {
 /*
         val scanLabel = intent.getStringExtra("scan_label")
         val idm = intent.getStringExtra("idm")
-        var coretimeArray = RealmList<coretime>()
+        var coretimeArray = RealmList<CoreTime>()
         for (i in 0..6) {
-            coretimeArray.add(coretime(GregorianCalendar(2000, 0, 1, 11, 0).time,
+            coretimeArray.add(CoreTime(GregorianCalendar(2000, 0, 1, 11, 0).time,
                     GregorianCalendar(2000, 0, 1, 11, 0).time, false))
         }
         if (scanLabel.compareTo(getString(R.string.edit))) {

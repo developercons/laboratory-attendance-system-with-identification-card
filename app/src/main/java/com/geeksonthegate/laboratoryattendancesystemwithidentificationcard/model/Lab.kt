@@ -6,7 +6,7 @@ import io.realm.annotations.PrimaryKey
 import java.util.*
 
 open class Lab(var labName: String? = null,
-               var coretimeArray: RealmList<coretime>? = null) : RealmObject() {
+               var coretimeArray: RealmList<CoreTime>? = null) : RealmObject() {
     @PrimaryKey
     var labId: String = UUID.randomUUID().toString()
 
@@ -15,6 +15,6 @@ open class Lab(var labName: String? = null,
                 ?: throw Exception("Invalid LabName")
 
         coretimeArray?.let { if (it.size == 0) throw Exception("Invalid coretimeArray") }
-                ?: throw Exception("Invalid coretime")
+                ?: throw Exception("Invalid CoreTime")
     }
 }

@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.AttendanceLog
-import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.coretime
+import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.CoreTime
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Lab
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Student
 import io.realm.Realm
@@ -30,9 +30,9 @@ class MainActivity : AppCompatActivity() {
 
         // 以降、テスト用ダミーデータの登録
         // 研究室
-        val coretimeArray = RealmList<coretime>()
+        val coretimeArray = RealmList<CoreTime>()
         for (i in 0..6) {
-            coretimeArray.add(coretime(GregorianCalendar(2000, 0, 1, 11, 0).time,
+            coretimeArray.add(CoreTime(GregorianCalendar(2000, 0, 1, 11, 0).time,
                     GregorianCalendar(2000, 0, 1, 11, 0).time, false))
         }
         val labArray = mutableListOf<Lab>()

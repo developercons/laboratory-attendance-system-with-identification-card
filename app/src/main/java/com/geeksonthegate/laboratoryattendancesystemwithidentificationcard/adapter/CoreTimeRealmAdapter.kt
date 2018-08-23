@@ -8,14 +8,14 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.R
-import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.coretime
+import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.CoreTime
 import io.realm.OrderedRealmCollection
 import io.realm.RealmBaseAdapter
 import kotlinx.android.synthetic.main.coretime_row.view.*
 import java.lang.IllegalStateException
 import java.text.SimpleDateFormat
 
-class coretimeRealmAdapter(@Nullable data: OrderedRealmCollection<coretime>) : RealmBaseAdapter<coretime>(data) {
+class coretimeRealmAdapter(@Nullable data: OrderedRealmCollection<CoreTime>) : RealmBaseAdapter<CoreTime>(data) {
     companion object {
         class ViewHolder(var day: TextView,
                          var startcoretime: EditText,
@@ -31,7 +31,7 @@ class coretimeRealmAdapter(@Nullable data: OrderedRealmCollection<coretime>) : R
         }
         val viewHolder = view.tag as ViewHolder
         val sdf = SimpleDateFormat("HH:dd")
-        val coretime = adapterData?.get(position) ?: throw IllegalStateException("Error")
+        val CoreTime = adapterData?.get(position) ?: throw IllegalStateException("Error")
         viewHolder.day.setText(when (position) {
             0 -> R.string.monday
             1 -> R.string.tuesday
@@ -42,9 +42,9 @@ class coretimeRealmAdapter(@Nullable data: OrderedRealmCollection<coretime>) : R
             6 -> R.string.sunday
             else -> throw IllegalStateException("Error")
         })
-        viewHolder.startcoretime.setText(sdf.format(coretime.endcoretime))
-        viewHolder.endcoretime.setText(sdf.format(coretime.endcoretime))
-        viewHolder.isCoreDay.isChecked = coretime.isCoreDay ?: false
+        viewHolder.startcoretime.setText(sdf.format(CoreTime.endcoretime))
+        viewHolder.endcoretime.setText(sdf.format(CoreTime.endcoretime))
+        viewHolder.isCoreDay.isChecked = CoreTime.isCoreDay ?: false
         return view as View
     }
 }
