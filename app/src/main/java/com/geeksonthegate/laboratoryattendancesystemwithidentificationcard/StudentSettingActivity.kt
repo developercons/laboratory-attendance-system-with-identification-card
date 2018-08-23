@@ -1,18 +1,18 @@
 package com.geeksonthegate.laboratoryattendancesystemwithidentificationcard
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-<<<<<<< HEAD
-import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.adapter.coretimeRealmAdapter
-=======
+
 import android.text.format.DateFormat
 import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
->>>>>>> 追加: 学生情報登録/編集画面で情報を取得・生成し表示する機能
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.CoreTime
+import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Lab
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Student
 import io.realm.Realm
+import io.realm.RealmList
 import kotlinx.android.synthetic.main.activity_student_setting.*
 import java.util.*
 
@@ -27,22 +27,29 @@ class StudentSettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_setting)
 
-        startCoreTimeLabelList = listOf<TextView>(monday_start_core_time_label,
-                tuesday_start_core_time_label, wednesday_start_core_time_label,
-                thursday_start_core_time_label, friday_start_core_time_label,
-                saturday_start_core_time_label, sunday_start_core_time_label)
-        endCoreTimeLabelList = listOf<TextView>(monday_end_core_time_label,
-                tuesday_end_core_time_label, wednesday_end_core_time_label,
-                thursday_end_core_time_label, friday_end_core_time_label,
-                saturday_end_core_time_label, sunday_end_core_time_label)
-        isCoreDayBoxList = listOf<CheckBox>(is_monday_core_day_box,
-                is_tuesday_core_day_box, is_wednesday_core_day_box,
-                is_thursday_core_day_box, is_friday_core_day_box,
-                is_saturday_core_day_box, is_sunday_core_day_box)
+        // 画面下部のコアタイム一覧の各パーツを取得
+        startCoreTimeLabelList = listOf<TextView>(monday_coretime_start,
+                tuesday_coretime_start, wednesday_coretime_start,
+                thursday_coretime_start, friday_coretime_start,
+                saturday_coretime_start, sunday_coretime_start)
+        endCoreTimeLabelList = listOf<TextView>(monday_coretime_end,
+                tuesday_coretime_end, wednesday_coretime_end,
+                thursday_coretime_end, friday_coretime_end,
+                saturday_coretime_end, sunday_coretime_end)
+        isCoreDayBoxList = listOf<CheckBox>(monday_check_box,
+                tuesday_check_box, wednesday_check_box,
+                thursday_check_box, friday_check_box,
+                saturday_check_box, sunday_check_box)
+
         realm = Realm.getDefaultInstance()
         val scanLabel = intent.getStringExtra("scan_label")
-        val idm = intent.getStringExtra("idm")
-        var student: Student? = realm.where(Student::class.java).equalTo("idm", idm).findFirst()
+        val idm = intent.getByteArrayExtra("idm")
+        val intent = Intent(this, MainActivity::class.java)
+
+        // 前画面から受け取ったIDmで検索する
+        var student: Student? = realm.where(Student::class.java).equalTo("idm", Arrays.toString(idm)).findFirst()
+
+        // コアタイム一覧を生成するメソッドに渡す一覧を生成・初期化
         val coreTimeList = mutableListOf<CoreTime>()
         for (i in 0..6) {
             coreTimeList.add(CoreTime(
@@ -53,28 +60,44 @@ class StudentSettingActivity : AppCompatActivity() {
                     true))
         }
 
+        // 前画面から受け取ったラベルを基に処理分岐
         when (scanLabel) {
             getString(R.string.register) -> {
                 when (student) {
                     null -> {
                         setCoreTimeArea(coreTimeList)
                     }
-                    else -> Toast.makeText(this,
-                            "ここで登録済みモーダルを表示", Toast.LENGTH_SHORT).show()
+                    else -> {
+                        Toast.makeText(this,
+                                "ここで登録済みモーダルを表示", Toast.LENGTH_SHORT).show()
+                        startActivity(intent)
+                    }
                 }
             }
             getString(R.string.edit) -> {
                 when (student) {
-                    null -> Toast.makeText(this,
-                            "ここで未登録モーダルを表示", Toast.LENGTH_SHORT).show()
+                    null -> {
+                        Toast.makeText(this,
+                                "ここで未登録モーダルを表示", Toast.LENGTH_SHORT).show()
+                        startActivity(intent)
+                    }
                     else -> {
-                        setCoreTimeArea(student.lab?.coreTimeArray ?: coreTimeList)
+                        setCoreTimeArea(student.lab?.coretimeArray ?: coreTimeList)
                         name_entry.setText(student.name)
-                        student_id_entry.setText(student.studentId)
+                        studentid_entry.setText(student.studentId)
                         // TODO: spinnerはまだ全く触ってない
                     }
                 }
             }
+        }
+        user_register_button.setOnClickListener {
+            val realmCoretimeList = RealmList<CoreTime>()
+            for (item in coreTimeList) {
+                realmCoretimeList.add(item)
+            }
+            student = Student(Arrays.toString(idm), studentid_entry.text.toString(), name_entry.text.toString(), Lab(labName = "福田研究室", coretimeArray = realmCoretimeList))
+            realm.executeTransaction { it.insertOrUpdate(student) }
+            startActivity(intent)
         }
     }
 
@@ -83,6 +106,7 @@ class StudentSettingActivity : AppCompatActivity() {
         realm.close()
     }
 
+    // コアタイム一覧を受け取りレイアウト内に一覧を表示するメソッド
     private fun setCoreTimeArea(coreTimeList: List<CoreTime>) {
         for (i in 0..6) {
             startCoreTimeLabelList[i].text = DateFormat.format("kk:mm", coreTimeList[i].startCoreTime)
