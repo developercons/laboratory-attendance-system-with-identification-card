@@ -37,21 +37,21 @@ class ScanStudentcardActivity : AppCompatActivity() {
         // 前画面で押されたボタンに応じてラベルの内容を変更
         when (id) {
             R.id.enter -> {
-                scanCardLabel.setText(R.string.enter_label)
+                scan_card_label.setText(R.string.enter_label)
                 setTitle(R.string.enter)
                 background.setImageResource(R.drawable.bg_enter)
             }
             R.id.exit -> {
-                scanCardLabel.setText(R.string.exit_label)
+                scan_card_label.setText(R.string.exit_label)
                 setTitle(R.string.exit)
                 background.setImageResource(R.drawable.bg_exit)
             }
             R.id.register -> {
-                scanCardLabel.setText(R.string.register_label)
+                scan_card_label.setText(R.string.register_label)
                 setTitle(R.string.register)
             }
             R.id.edit -> {
-                scanCardLabel.setText(R.string.edit_label)
+                scan_card_label.setText(R.string.edit_label)
                 setTitle(R.string.edit)
             }
         }
