@@ -352,7 +352,8 @@
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         tools:layout_editor_absoluteX="242dp"
-        tools:layout_editor_absoluteY="464dp" />
+        tools:layout_editor_absoluteY="464dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView17"
@@ -363,7 +364,8 @@
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/saturday_start_end_label"
-        tools:layout_editor_absoluteY="437dp" />
+        tools:layout_editor_absoluteY="437dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView15"
@@ -374,7 +376,8 @@
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/friday_start_end_label"
-        tools:layout_editor_absoluteY="410dp" />
+        tools:layout_editor_absoluteY="410dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView13"
@@ -385,7 +388,8 @@
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/thursday_start_end_label"
-        tools:layout_editor_absoluteY="383dp" />
+        tools:layout_editor_absoluteY="383dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView11"
@@ -396,7 +400,8 @@
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/wednesday_start_end_label"
-        tools:layout_editor_absoluteY="356dp" />
+        tools:layout_editor_absoluteY="356dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView9"
@@ -407,7 +412,8 @@
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/tuesday_start_end_label"
-        tools:layout_editor_absoluteY="329dp" />
+        tools:layout_editor_absoluteY="329dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView7"
@@ -418,7 +424,8 @@
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/monday_start_end_label"
-        tools:layout_editor_absoluteY="302dp" />
+        tools:layout_editor_absoluteY="302dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView4"
@@ -429,7 +436,8 @@
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/saturday"
-        tools:layout_editor_absoluteY="464dp" />
+        tools:layout_editor_absoluteY="464dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView16"
@@ -440,7 +448,8 @@
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/saturday"
-        tools:layout_editor_absoluteY="437dp" />
+        tools:layout_editor_absoluteY="437dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView14"
@@ -451,7 +460,8 @@
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/friday"
-        tools:layout_editor_absoluteY="410dp" />
+        tools:layout_editor_absoluteY="410dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView12"
@@ -462,7 +472,8 @@
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/thursday"
-        tools:layout_editor_absoluteY="383dp" />
+        tools:layout_editor_absoluteY="383dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView10"
@@ -473,7 +484,8 @@
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/wednesday"
-        tools:layout_editor_absoluteY="356dp" />
+        tools:layout_editor_absoluteY="356dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView8"
@@ -484,7 +496,8 @@
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/tuesday"
-        tools:layout_editor_absoluteY="329dp" />
+        tools:layout_editor_absoluteY="329dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView6"
@@ -495,6 +508,7 @@
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/monday"
-        tools:layout_editor_absoluteY="302dp" />
+        tools:layout_editor_absoluteY="302dp"
+        tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>
