@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.text.format.DateFormat
 import android.widget.CheckBox
 import android.widget.TextView
-import android.widget.Toast
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.CoreTime
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Lab
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Student
@@ -62,34 +61,16 @@ class StudentSettingActivity : AppCompatActivity() {
 
         // 前画面から受け取ったラベルを基に処理分岐
         when (scanLabel) {
-            getString(R.string.register) -> {
-                when (student) {
-                    null -> {
-                        setCoreTimeArea(coreTimeList)
-                    }
-                    else -> {
-                        Toast.makeText(this,
-                                "ここで登録済みモーダルを表示", Toast.LENGTH_SHORT).show()
-                        startActivity(intent)
-                    }
-                }
-            }
+            getString(R.string.register) -> setCoreTimeArea(coreTimeList)
+
             getString(R.string.edit) -> {
-                when (student) {
-                    null -> {
-                        Toast.makeText(this,
-                                "ここで未登録モーダルを表示", Toast.LENGTH_SHORT).show()
-                        startActivity(intent)
-                    }
-                    else -> {
-                        setCoreTimeArea(student.lab?.coretimeArray ?: coreTimeList)
-                        name_entry.setText(student.name)
-                        studentid_entry.setText(student.studentId)
-                        // TODO: spinnerはまだ全く触ってない
-                    }
-                }
+                setCoreTimeArea(student?.lab?.coretimeArray ?: coreTimeList)
+                name_entry.setText(student?.name)
+                studentid_entry.setText(student?.studentId)
+                // TODO: spinnerはまだ全く触ってない
             }
         }
+
         user_register_button.setOnClickListener {
             val realmCoretimeList = RealmList<CoreTime>()
             for (item in coreTimeList) {
