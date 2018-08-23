@@ -252,6 +252,7 @@
         android:id="@+id/monday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:text="@string/monday"
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
