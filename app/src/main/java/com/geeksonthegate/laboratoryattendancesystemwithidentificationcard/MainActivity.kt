@@ -22,12 +22,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         realm = Realm.getDefaultInstance()
 
-        enter.setOnClickListener { scanStudentcardButtonTapped(it) }
-        exit.setOnClickListener { scanStudentcardButtonTapped(it) }
-        register.setOnClickListener { scanStudentcardButtonTapped(it) }
-        edit.setOnClickListener { scanStudentcardButtonTapped(it) }
-        history.setOnClickListener {}
-
         // 以降、テスト用ダミーデータの登録
         // 研究室
         val coretimeArray = RealmList<CoreTime>()
@@ -46,7 +40,6 @@ class MainActivity : AppCompatActivity() {
         } finally {
             if (labArray.size != 0) {
                 realm?.executeTransaction { for (item in labArray) it.insertOrUpdate(item) }
-                Toast.makeText(this, "研究室のダミーデータを追加しました", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -61,7 +54,6 @@ class MainActivity : AppCompatActivity() {
         } finally {
             if (studentArray.size != 0) {
                 realm?.executeTransaction { for (item in studentArray) it.insertOrUpdate(item) }
-                Toast.makeText(this, "学生のダミーデータを追加しました", Toast.LENGTH_SHORT).show()
             }
         }
         realm?.executeTransaction { for (item in studentArray) it.insertOrUpdate(item) }
@@ -72,8 +64,12 @@ class MainActivity : AppCompatActivity() {
         logArray.add(AttendanceLog(listOf<Byte>(1, 16, 8, 0, 60, 20, -99, 1).toString(), GregorianCalendar(2018, 8, 20, 11, 0).time, GregorianCalendar(2018, 8, 20, 18, 0).time))
         logArray.add(AttendanceLog(listOf<Byte>(1, 18, 3, 18, -45, 24, 34, 28).toString(), GregorianCalendar(2018, 8, 20, 11, 0).time, GregorianCalendar(2018, 8, 20, 18, 0).time))
         realm?.executeTransaction { for (item in logArray) it.insertOrUpdate(item) }
-        Toast.makeText(this, "ログのダミーデータを追加しました", Toast.LENGTH_SHORT).show()
 
+        enter.setOnClickListener { scanStudentcardButtonTapped(it) }
+        exit.setOnClickListener { scanStudentcardButtonTapped(it) }
+        register.setOnClickListener { scanStudentcardButtonTapped(it) }
+        edit.setOnClickListener { scanStudentcardButtonTapped(it) }
+        history.setOnClickListener {}
     }
 
     // カード読み取り(入退室)画面に遷移
