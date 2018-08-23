@@ -8,7 +8,7 @@
     tools:context=".ScanStudentcardActivity">
 
     <TextView
-        android:id="@+id/scanCardLabel"
+        android:id="@+id/scan_card_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"

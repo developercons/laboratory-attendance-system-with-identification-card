@@ -7,7 +7,7 @@
     tools:context=".StudentSettingActivity">
 
     <TextView
-        android:id="@+id/belongLabel"
+        android:id="@+id/lab_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/belongSpinner"
+        android:id="@+id/lab_spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -27,10 +27,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/belongLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/lab_label" />
 
     <TextView
-        android:id="@+id/nameLabel"
+        android:id="@+id/name_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -38,10 +38,10 @@
         android:text="@string/name_label"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/belongSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/lab_spinner" />
 
     <EditText
-        android:id="@+id/nameBox"
+        android:id="@+id/name_entry"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -53,10 +53,10 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/name_label" />
 
     <TextView
-        android:id="@+id/studentIdLabel"
+        android:id="@+id/student_id_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -64,10 +64,10 @@
         android:text="@string/student_id_label"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameBox" />
+        app:layout_constraintTop_toBottomOf="@+id/name_entry" />
 
     <EditText
-        android:id="@+id/studentIdBox"
+        android:id="@+id/student_id_entry"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -79,10 +79,10 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentIdLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/student_id_label" />
 
     <TextView
-        android:id="@+id/coreTimeLabel"
+        android:id="@+id/core_time_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -90,10 +90,10 @@
         android:text="@string/core_time_label"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentIdBox" />
+        app:layout_constraintTop_toBottomOf="@+id/student_id_entry" />
 
     <EditText
-        android:id="@+id/coreTimeStartBox"
+        android:id="@+id/core_time_start_entry"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -104,10 +104,22 @@
         android:inputType="time"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coreTimeLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/core_time_label" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="~"
+        app:layout_constraintBottom_toBottomOf="@+id/core_time_start_entry"
+        app:layout_constraintStart_toEndOf="@+id/core_time_start_entry"
+        app:layout_constraintTop_toTopOf="@+id/core_time_start_entry" />
 
     <EditText
-        android:id="@+id/coreTimeEndBox"
+        android:id="@+id/core_time_end_entry"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -118,22 +130,10 @@
         android:inputType="time"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/coreTimeLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/core_time_label" />
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="~"
-        app:layout_constraintBottom_toBottomOf="@+id/coreTimeStartBox"
-        app:layout_constraintStart_toEndOf="@+id/coreTimeStartBox"
-        app:layout_constraintTop_toTopOf="@+id/coreTimeStartBox" />
-
-    <TextView
-        android:id="@+id/coreTimeCustomLabel"
+        android:id="@+id/core_time_custom_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -141,27 +141,27 @@
         android:text="@string/core_time_custom_label"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coreTimeStartBox" />
+        app:layout_constraintTop_toBottomOf="@+id/core_time_start_entry" />
 
     <TextView
-        android:id="@+id/mondayLabel"
+        android:id="@+id/monday_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="@string/monday"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coreTimeCustomLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/core_time_custom_label" />
 
     <TextView
-        android:id="@+id/mondayStartCoreTimeLabel"
+        android:id="@+id/monday_start_core_time_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/mondayLabel"
-        app:layout_constraintTop_toBottomOf="@+id/coreTimeCustomLabel" />
+        app:layout_constraintStart_toEndOf="@+id/monday_label"
+        app:layout_constraintTop_toBottomOf="@+id/core_time_custom_label" />
 
     <TextView
         android:id="@+id/textView4"
@@ -170,88 +170,48 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/mondayStartCoreTimeLabel"
-        app:layout_constraintTop_toBottomOf="@+id/coreTimeCustomLabel" />
+        app:layout_constraintStart_toEndOf="@+id/monday_start_core_time_label"
+        app:layout_constraintTop_toBottomOf="@+id/core_time_custom_label" />
+
+    <TextView
+        android:id="@+id/monday_end_core_time_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/core_time_custom_label" />
 
     <CheckBox
-        android:id="@+id/isMondayCoreDayBox"
+        android:id="@+id/is_monday_core_day_box"
         android:layout_width="wrap_content"
         android:layout_height="14dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="CheckBox"
-        app:layout_constraintStart_toEndOf="@+id/mondayEndCoreTimeLabel"
-        app:layout_constraintTop_toBottomOf="@+id/coreTimeCustomLabel" />
+        app:layout_constraintStart_toEndOf="@+id/monday_end_core_time_label"
+        app:layout_constraintTop_toBottomOf="@+id/core_time_custom_label" />
 
     <TextView
-        android:id="@+id/tuesdayLabel"
+        android:id="@+id/tuesday_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="@string/tuesday"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mondayLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/monday_label" />
 
     <TextView
-        android:id="@+id/wednesdayLabel"
+        android:id="@+id/tuesday_start_core_time_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tuesdayLabel" />
-
-    <TextView
-        android:id="@+id/thursdayLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wednesdayLabel" />
-
-    <TextView
-        android:id="@+id/fridayLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/thursdayLabel" />
-
-    <TextView
-        android:id="@+id/saturdayLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fridayLabel" />
-
-    <TextView
-        android:id="@+id/sundayLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saturdayLabel" />
-
-    <TextView
-        android:id="@+id/tuesdayStartCoreTimeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/tuesdayLabel"
-        app:layout_constraintTop_toBottomOf="@+id/mondayStartCoreTimeLabel" />
+        app:layout_constraintStart_toEndOf="@+id/tuesday_label"
+        app:layout_constraintTop_toBottomOf="@+id/monday_start_core_time_label" />
 
     <TextView
         android:id="@+id/textView13"
@@ -260,18 +220,48 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/tuesdayStartCoreTimeLabel"
+        app:layout_constraintStart_toEndOf="@+id/tuesday_start_core_time_label"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
-        android:id="@+id/wednesdayStartCoreTimeLabel"
+        android:id="@+id/tuesday_end_core_time_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/wednesdayLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tuesdayStartCoreTimeLabel" />
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/monday_end_core_time_label" />
+
+    <CheckBox
+        android:id="@+id/is_tuesday_core_day_box"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="CheckBox"
+        app:layout_constraintStart_toEndOf="@+id/tuesday_end_core_time_label"
+        app:layout_constraintTop_toBottomOf="@+id/is_monday_core_day_box" />
+
+    <TextView
+        android:id="@+id/wednesday_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/wednesday"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tuesday_label" />
+
+    <TextView
+        android:id="@+id/wednesday_start_core_time_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/wednesday_label"
+        app:layout_constraintTop_toBottomOf="@+id/tuesday_start_core_time_label" />
 
     <TextView
         android:id="@+id/textView15"
@@ -280,18 +270,48 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/wednesdayStartCoreTimeLabel"
+        app:layout_constraintStart_toEndOf="@+id/wednesday_start_core_time_label"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
-        android:id="@+id/thursdayStartCoreTimeLabel"
+        android:id="@+id/wednesday_end_core_time_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/thursdayLabel"
-        app:layout_constraintTop_toBottomOf="@+id/wednesdayStartCoreTimeLabel" />
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/tuesday_end_core_time_label" />
+
+    <CheckBox
+        android:id="@+id/is_wednesday_core_day_box"
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="CheckBox"
+        app:layout_constraintStart_toEndOf="@+id/wednesday_end_core_time_label"
+        app:layout_constraintTop_toBottomOf="@+id/is_tuesday_core_day_box" />
+
+    <TextView
+        android:id="@+id/thursday_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/thursday"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wednesday_label" />
+
+    <TextView
+        android:id="@+id/thursday_start_core_time_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/thursday_label"
+        app:layout_constraintTop_toBottomOf="@+id/wednesday_start_core_time_label" />
 
     <TextView
         android:id="@+id/textView17"
@@ -300,18 +320,48 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/thursdayStartCoreTimeLabel"
+        app:layout_constraintStart_toEndOf="@+id/thursday_start_core_time_label"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <TextView
-        android:id="@+id/fridayStartCoreTimeLabel"
+        android:id="@+id/thursday_end_core_time_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/fridayLabel"
-        app:layout_constraintTop_toBottomOf="@+id/thursdayStartCoreTimeLabel" />
+        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/wednesday_end_core_time_label" />
+
+    <CheckBox
+        android:id="@+id/is_thursday_core_day_box"
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="CheckBox"
+        app:layout_constraintStart_toEndOf="@+id/thursday_end_core_time_label"
+        app:layout_constraintTop_toBottomOf="@+id/is_wednesday_core_day_box" />
+
+    <TextView
+        android:id="@+id/friday_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/friday"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thursday_label" />
+
+    <TextView
+        android:id="@+id/friday_start_core_time_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/friday_label"
+        app:layout_constraintTop_toBottomOf="@+id/thursday_start_core_time_label" />
 
     <TextView
         android:id="@+id/textView19"
@@ -320,18 +370,48 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/fridayStartCoreTimeLabel"
+        app:layout_constraintStart_toEndOf="@+id/friday_start_core_time_label"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
-        android:id="@+id/saturdayStartCoreTimeLabel"
+        android:id="@+id/friday_end_core_time_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/saturdayLabel"
-        app:layout_constraintTop_toBottomOf="@+id/fridayStartCoreTimeLabel" />
+        app:layout_constraintStart_toEndOf="@+id/textView19"
+        app:layout_constraintTop_toBottomOf="@+id/thursday_end_core_time_label" />
+
+    <CheckBox
+        android:id="@+id/is_friday_core_day_box"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="CheckBox"
+        app:layout_constraintStart_toEndOf="@+id/friday_end_core_time_label"
+        app:layout_constraintTop_toBottomOf="@+id/is_thursday_core_day_box" />
+
+    <TextView
+        android:id="@+id/saturday_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/saturday"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/friday_label" />
+
+    <TextView
+        android:id="@+id/saturday_start_core_time_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/saturday_label"
+        app:layout_constraintTop_toBottomOf="@+id/friday_start_core_time_label" />
 
     <TextView
         android:id="@+id/textView21"
@@ -340,18 +420,48 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/saturdayStartCoreTimeLabel"
+        app:layout_constraintStart_toEndOf="@+id/saturday_start_core_time_label"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <TextView
-        android:id="@+id/sundayStartCoreTimeLabel"
+        android:id="@+id/saturday_end_core_time_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/sundayLabel"
-        app:layout_constraintTop_toBottomOf="@+id/saturdayStartCoreTimeLabel" />
+        app:layout_constraintStart_toEndOf="@+id/textView21"
+        app:layout_constraintTop_toBottomOf="@+id/friday_end_core_time_label" />
+
+    <CheckBox
+        android:id="@+id/is_saturday_core_day_box"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="CheckBox"
+        app:layout_constraintStart_toEndOf="@+id/saturday_end_core_time_label"
+        app:layout_constraintTop_toBottomOf="@+id/is_friday_core_day_box" />
+
+    <TextView
+        android:id="@+id/sunday_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/sunday"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saturday_label" />
+
+    <TextView
+        android:id="@+id/sunday_start_core_time_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/sunday_label"
+        app:layout_constraintTop_toBottomOf="@+id/saturday_start_core_time_label" />
 
     <TextView
         android:id="@+id/textView23"
@@ -360,137 +470,27 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/sundayStartCoreTimeLabel"
+        app:layout_constraintStart_toEndOf="@+id/sunday_start_core_time_label"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
-    <CheckBox
-        android:id="@+id/isTuesdayCoreDayBox"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="CheckBox"
-        app:layout_constraintStart_toEndOf="@+id/tuesdayEndCoreTimeLabel"
-        app:layout_constraintTop_toBottomOf="@+id/isMondayCoreDayBox" />
-
-    <CheckBox
-        android:id="@+id/isWednesdayCoreDayBox"
-        android:layout_width="wrap_content"
-        android:layout_height="14dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="CheckBox"
-        app:layout_constraintStart_toEndOf="@+id/wednesdayEndCoreTimeLabel"
-        app:layout_constraintTop_toBottomOf="@+id/isTuesdayCoreDayBox" />
-
-    <CheckBox
-        android:id="@+id/isThursdayCoreDayBox"
-        android:layout_width="wrap_content"
-        android:layout_height="14dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="CheckBox"
-        app:layout_constraintStart_toEndOf="@+id/thursdayEndCoreTimeLabel"
-        app:layout_constraintTop_toBottomOf="@+id/isWednesdayCoreDayBox" />
-
-    <CheckBox
-        android:id="@+id/isFridayCoreDayBox"
-        android:layout_width="wrap_content"
-        android:layout_height="21dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="CheckBox"
-        app:layout_constraintStart_toEndOf="@+id/fridayEndCoreTimeLabel"
-        app:layout_constraintTop_toBottomOf="@+id/isThursdayCoreDayBox" />
-
-    <CheckBox
-        android:id="@+id/isSaturdayCoreDayBox"
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="CheckBox"
-        app:layout_constraintStart_toEndOf="@+id/saturdayEndCoreTimeLabel"
-        app:layout_constraintTop_toBottomOf="@+id/isFridayCoreDayBox" />
-
-    <CheckBox
-        android:id="@+id/isSundayCoreDayBox"
-        android:layout_width="wrap_content"
-        android:layout_height="21dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="CheckBox"
-        app:layout_constraintStart_toEndOf="@+id/sundayEndCoreTimeLabel"
-        app:layout_constraintTop_toBottomOf="@+id/isSaturdayCoreDayBox" />
-
     <TextView
-        android:id="@+id/mondayEndCoreTimeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/coreTimeCustomLabel" />
-
-    <TextView
-        android:id="@+id/tuesdayEndCoreTimeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/mondayEndCoreTimeLabel" />
-
-    <TextView
-        android:id="@+id/wednesdayEndCoreTimeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/tuesdayEndCoreTimeLabel" />
-
-    <TextView
-        android:id="@+id/thursdayEndCoreTimeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toBottomOf="@+id/wednesdayEndCoreTimeLabel" />
-
-    <TextView
-        android:id="@+id/fridayEndCoreTimeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView19"
-        app:layout_constraintTop_toBottomOf="@+id/thursdayEndCoreTimeLabel" />
-
-    <TextView
-        android:id="@+id/saturdayEndCoreTimeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView21"
-        app:layout_constraintTop_toBottomOf="@+id/fridayEndCoreTimeLabel" />
-
-    <TextView
-        android:id="@+id/sundayEndCoreTimeLabel"
+        android:id="@+id/sunday_end_core_time_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView23"
-        app:layout_constraintTop_toBottomOf="@+id/saturdayEndCoreTimeLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/saturday_end_core_time_label" />
+
+    <CheckBox
+        android:id="@+id/is_sunday_core_day_box"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="CheckBox"
+        app:layout_constraintStart_toEndOf="@+id/sunday_end_core_time_label"
+        app:layout_constraintTop_toBottomOf="@+id/is_saturday_core_day_box" />
 
 </android.support.constraint.ConstraintLayout>
