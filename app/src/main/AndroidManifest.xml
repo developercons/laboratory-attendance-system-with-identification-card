@@ -40,6 +40,8 @@
         <activity
             android:name=".StudentSettingActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".LabSettingActivity"
+            android:screenOrientation="portrait" />
     </application>
-
 </manifest>
