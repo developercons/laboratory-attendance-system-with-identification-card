@@ -7,6 +7,6 @@ class LabSettingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lab_setting)
+        setContentView(R.layout.activity_student_setting)
     }
 }
