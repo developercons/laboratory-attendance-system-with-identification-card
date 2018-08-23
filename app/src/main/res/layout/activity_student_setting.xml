@@ -550,7 +550,7 @@
         app:layout_constraintVertical_bias="0.98" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/monday_check_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -563,7 +563,7 @@
         app:layout_constraintVertical_bias="0.615" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/tuesday_check_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -575,7 +575,7 @@
         app:layout_constraintVertical_bias="0.615" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/wednesday_check_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -586,7 +586,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <CheckBox
-        android:id="@+id/checkBox4"
+        android:id="@+id/thursday_check_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -598,7 +598,7 @@
         app:layout_constraintVertical_bias="0.615" />
 
     <CheckBox
-        android:id="@+id/checkBox5"
+        android:id="@+id/friday_check_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -610,7 +610,7 @@
         app:layout_constraintVertical_bias="0.615" />
 
     <CheckBox
-        android:id="@+id/checkBox6"
+        android:id="@+id/saturday_check_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -622,7 +622,7 @@
         app:layout_constraintTop_toBottomOf="@+id/friday_coretime_end" />
 
     <CheckBox
-        android:id="@+id/checkBox7"
+        android:id="@+id/sunday_check_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
