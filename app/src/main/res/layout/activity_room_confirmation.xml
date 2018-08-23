@@ -70,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:text="TextView"
+        android:text="@string/enter_label"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
         app:layout_constraintStart_toStartOf="parent"
