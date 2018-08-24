@@ -43,13 +43,13 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/lab_label"
+        android:id="@+id/name_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="100dp"
-        android:text="@string/lab_label"
+        android:text="@string/name_label"
         android:textColor="@color/colorAccent"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
