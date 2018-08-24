@@ -8,6 +8,7 @@ import android.text.format.DateFormat
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.TextView
+import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.adapter.LabAdapter
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.CoreTime
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Lab
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Student
@@ -49,16 +50,6 @@ class StudentSettingActivity : AppCompatActivity() {
         // 前画面から受け取ったIDmで検索する
         var student: Student? = realm.where(Student::class.java).equalTo("idm", Arrays.toString(idm)).findFirst()
 
-        // 研究室一覧を受け取り、Spinner内のリストを生成
-        // TODO: スピナー内の文字をデザインに合わせる
-        val results = realm.where(Lab::class.java).findAll()
-        val labList = results.subList(0, results.size)
-        val labNameList = mutableListOf<String>()
-        labNameList.add("新規")
-        labList.forEach { labNameList.add(it.labName ?: "") }
-        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, labNameList)
-        lab_spinner.adapter = adapter
-
         // コアタイム一覧を生成するメソッドに渡す一覧を生成・初期化
         val coreTimeList = mutableListOf<CoreTime>()
         for (i in 0..6) {
@@ -69,6 +60,16 @@ class StudentSettingActivity : AppCompatActivity() {
                             2000, 0, 1, 17, 0).time,
                     true))
         }
+
+        // 研究室一覧を受け取り、Spinner内のリストを生成
+        // TODO: スピナー内の文字をデザインに合わせる
+        val results = realm.where(Lab::class.java).findAll()
+        val labList = mutableListOf<Lab>()
+        // TODO: ダミーデータを消したら「新規」選択肢は最後に回すこと
+        labList.add(Lab("新規", listToRealmList(coreTimeList)))
+        labList.addAll(results.subList(0, results.size))
+        val adapter = LabAdapter(this, android.R.layout.simple_spinner_dropdown_item, labList)
+        lab_spinner.adapter = adapter
 
         // 前画面から受け取ったラベルを基に処理分岐
         when (scanLabel) {
@@ -83,11 +84,7 @@ class StudentSettingActivity : AppCompatActivity() {
 
         // 登録ボタンが押されたら画面情報を基にStudentデータを登録
         user_register_button.setOnClickListener {
-            val realmCoretimeList = RealmList<CoreTime>()
-            for (item in coreTimeList) {
-                realmCoretimeList.add(item)
-            }
-            student = Student(Arrays.toString(idm), studentid_entry.text.toString(), name_entry.text.toString(), Lab(labName = "福田研究室", coretimeArray = realmCoretimeList))
+            student = Student(Arrays.toString(idm), studentid_entry.text.toString(), name_entry.text.toString(), Lab(labName = "福田研究室", coretimeArray = listToRealmList(coreTimeList)))
             realm.executeTransaction { it.insertOrUpdate(student) }
             startActivity(intent)
         }
@@ -108,5 +105,14 @@ class StudentSettingActivity : AppCompatActivity() {
                 val nextIntent = Intent(this, LabSettingActivity::class.java)
             }
         }
+    }
+
+    // ListからRealmListへ変換するメソッド
+    private fun <T> listToRealmList(list: List<T>): RealmList<T> {
+        val realmList = RealmList<T>()
+        for (item in list) {
+            realmList.add(item)
+        }
+        return realmList
     }
 }
