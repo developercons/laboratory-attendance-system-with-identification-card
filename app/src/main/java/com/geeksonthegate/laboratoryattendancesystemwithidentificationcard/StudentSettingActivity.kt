@@ -50,6 +50,7 @@ class StudentSettingActivity : AppCompatActivity() {
         var student: Student? = realm.where(Student::class.java).equalTo("idm", Arrays.toString(idm)).findFirst()
 
         // 研究室一覧を受け取り、Spinner内のリストを生成
+        // TODO: スピナー内の文字をデザインに合わせる
         val results = realm.where(Lab::class.java).findAll()
         val labList = results.subList(0, results.size)
         val labNameList = mutableListOf<String>()
@@ -77,7 +78,6 @@ class StudentSettingActivity : AppCompatActivity() {
                 setCoreTimeArea(student?.lab?.coretimeArray ?: coreTimeList)
                 name_entry.setText(student?.name)
                 studentid_entry.setText(student?.studentId)
-                // TODO: spinnerはまだ全く触ってない
             }
         }
 
