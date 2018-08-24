@@ -43,7 +43,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/lab_label"
+        android:id="@+id/name_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -635,11 +635,12 @@
 
     <Spinner
         android:id="@+id/lab_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="246dp"
+        android:layout_height="37dp"
         android:layout_marginStart="28dp"
+        android:layout_marginTop="54dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lab_label" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/name_entry"

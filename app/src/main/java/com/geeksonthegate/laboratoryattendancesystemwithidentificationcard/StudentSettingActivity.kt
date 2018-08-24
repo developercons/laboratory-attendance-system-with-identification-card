@@ -53,8 +53,9 @@ class StudentSettingActivity : AppCompatActivity() {
         val results = realm.where(Lab::class.java).findAll()
         val labList = results.subList(0, results.size)
         val labNameList = mutableListOf<String>()
+        labNameList.add("新規")
         labList.forEach { labNameList.add(it.labName ?: "") }
-        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_2, labNameList)
+        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, labNameList)
         lab_spinner.adapter = adapter
 
         // コアタイム一覧を生成するメソッドに渡す一覧を生成・初期化
@@ -80,6 +81,7 @@ class StudentSettingActivity : AppCompatActivity() {
             }
         }
 
+        // 登録ボタンが押されたら画面情報を基にStudentデータを登録
         user_register_button.setOnClickListener {
             val realmCoretimeList = RealmList<CoreTime>()
             for (item in coreTimeList) {
