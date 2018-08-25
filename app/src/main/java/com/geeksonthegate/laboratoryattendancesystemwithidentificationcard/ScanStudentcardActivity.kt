@@ -1,22 +1,22 @@
 package com.geeksonthegate.laboratoryattendancesystemwithidentificationcard
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.app.PendingIntent
-import android.app.PendingIntent.getActivity
+import android.content.DialogInterface
 import android.content.Intent
 import android.nfc.NfcAdapter
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat.startActivity
 import android.widget.Toast
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Student
 import io.realm.Realm
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_scan_studentcard.*
 import java.util.*
-import android.support.v4.app.DialogFragment
 
 
+@Suppress("DEPRECATED_IDENTITY_EQUALS")
 class ScanStudentcardActivity : AppCompatActivity() {
 
     private lateinit var realm: Realm
@@ -93,32 +93,44 @@ class ScanStudentcardActivity : AppCompatActivity() {
             return
         }
 
-        // タイトルによって次に飛ぶActivityを選択する
-        when (id) {
-            R.id.enter -> {
-                if (isRegisteredCard(idm) === false)
-                {
-                    AlertDialog.Builder(this)
-                            .setTitle("エラー")
-                            .setPositiveButton("ok"){ dialog, which ->
-                            }.show()
-                }
+        Toast.makeText(this, Arrays.toString(idm), Toast.LENGTH_SHORT).show()
 
-                nextIntent = Intent(this, RoomConfirmationActivity::class.java)
-            }
-            R.id.exit -> {
-                nextIntent = Intent(this, RoomConfirmationActivity::class.java)
-            }
-            R.id.register -> {
-                nextIntent = Intent(this, StudentSettingActivity::class.java)
-            }
-            R.id.edit -> {
-                nextIntent = Intent(this, StudentSettingActivity::class.java)
-            }
-        }
         nextIntent.putExtra("scan_label", title)
         nextIntent.putExtra("idm", idm)
-        startActivity(nextIntent)
+
+        when (id) {
+            R.id.enter -> {
+                when {
+                // 登録済みの学生の場合には確認画面に遷移する
+                    isRegisteredCard(idm) -> {
+                        nextIntent = Intent(this, RoomConfirmationActivity::class.java)
+                        startActivity(nextIntent)
+                    }
+                // 未登録の学生の場合にはメインに遷移し, モーダルを表示
+                    !isRegisteredCard(idm) -> {
+                        unknownRegistedCardModal(nextIntent)
+                    }
+                }
+            }
+            R.id.exit -> {
+                when {
+                // 登録済みの学生の場合には確認画面に遷移する
+                    isRegisteredCard(idm) -> {
+                        nextIntent = Intent(this, RoomConfirmationActivity::class.java)
+                        startActivity(nextIntent)
+                    }
+                // 未登録の学生の場合にはメインに遷移し, モーダルを表示
+                    !isRegisteredCard(idm) -> {
+                        unknownRegistedCardModal(nextIntent)
+                    }
+                }
+            }
+
+            R.id.register, R.id.edit -> {
+                nextIntent = Intent(this, StudentSettingActivity::class.java)
+                startActivity(nextIntent)
+            }
+        }
     }
 
     override fun onDestroy() {
@@ -127,12 +139,27 @@ class ScanStudentcardActivity : AppCompatActivity() {
     }
 
     /*登録済みの学生証かどうかを判断する
-    * 登録済みなら true
-    * 未登録ならfalseを返す*/
+    * 登録済みなら true / 未登録ならfalseを返す*/
     private fun isRegisteredCard(idm: ByteArray): Boolean {
-        return when{
-            realm.where<Student>().contains("idm", Arrays.toString(idm)).findAll().isEmpty() -> false
-            else -> true
+        return when {
+            realm.where(Student::class.java).equalTo("idm", Arrays.toString(idm)).findFirst() == null -> false
+            else -> false
+        }
+    }
+
+    private fun unknownRegistedCardModal(nextIntent: Intent) {
+
+        setContentView(R.layout.activity_scan_studentcard)
+        AlertDialog.Builder(this).apply {
+            setCancelable(false)
+            setTitle("この学生証は未登録です")
+            setMessage("トップから登録ボタンをタップして\n学生情報を登録してください")
+            setPositiveButton("OK", DialogInterface.OnClickListener { dialog, id ->
+                // OKがタップされたらMain画面に遷移
+                startActivity(nextIntent)
+            })
+            setNegativeButton("Cancel", null)
+            show()
         }
     }
 }
