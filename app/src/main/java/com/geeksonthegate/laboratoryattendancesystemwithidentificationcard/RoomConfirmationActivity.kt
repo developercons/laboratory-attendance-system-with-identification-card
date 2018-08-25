@@ -41,13 +41,13 @@ class RoomConfirmationActivity : AppCompatActivity() {
         val cal = Calendar.getInstance()
         val hour: Int = cal.get(Calendar.HOUR_OF_DAY)
         val minutes: Int = cal.get(Calendar.MINUTE)
-        val day = cal.get(Calendar.DAY_OF_WEEK)
+        var day = cal.get(Calendar.DAY_OF_WEEK)
         when (day) {
             1 -> {
-                day + 5
+                day = day + 5
             }
             2, 3, 4, 5, 6, 7 -> {
-                day - 2
+                day = day - 2
             }
         }
 
@@ -56,18 +56,18 @@ class RoomConfirmationActivity : AppCompatActivity() {
         val name: String? = student?.name
         val studentId: String? = student?.studentId
 
-        val startCoretime: Calendar = Calendar.getInstance()
-        startCoretime.time = student?.lab?.coretimeArray?.get(day)?.startcoretime
-        val startCoreHour: Int = startCoretime.get(Calendar.HOUR_OF_DAY)
-        val startCoreMinute: Int = startCoretime.get(Calendar.MINUTE)
+        val startCoreTime: Calendar = Calendar.getInstance()
+        startCoreTime.time = student?.lab?.coreTimeArray?.get(day)?.startCoreTime ?: startCoreTime.time
+        val startCoreHour: Int = startCoreTime.get(Calendar.HOUR_OF_DAY)
+        val startCoreMinute: Int = startCoreTime.get(Calendar.MINUTE)
 
 
-        val endCoretime: Calendar = Calendar.getInstance()
-        endCoretime.time = student?.lab?.coretimeArray?.get(day)?.endcoretime
-        val endCoreHour: Int = endCoretime.get(Calendar.HOUR_OF_DAY)
-        val endCoreMinute: Int = endCoretime.get(Calendar.MINUTE)
+        val endCoreTime: Calendar = Calendar.getInstance()
+        endCoreTime.time = student?.lab?.coreTimeArray?.get(day)?.endCoreTime
+        val endCoreHour: Int = endCoreTime.get(Calendar.HOUR_OF_DAY)
+        val endCoreMinute: Int = endCoreTime.get(Calendar.MINUTE)
 
-        //val endcoretime = student?.lab?.coretimeArray?.get(day)?.endcoretime
+        //val endcoreTime = student?.lab?.coreTimeArray?.get(day)?.endcoreTime
         //  DateFormat("EEE MMM dd mm;ss;xx )
 
         //Toast.makeText(this, startCoreTime.time.toString(), Toast.LENGTH_SHORT).show()
@@ -80,16 +80,16 @@ class RoomConfirmationActivity : AppCompatActivity() {
         val name_view: TextView = findViewById(R.id.name)
         val studentId_view: TextView = findViewById(R.id.studentId)
         val currentTime_view: TextView = findViewById(R.id.currentTime)
-        val startcoretime_view: TextView = findViewById(R.id.coretime_start)
-        val endcoretime_view: TextView = findViewById(R.id.coretime_end)
+        val startcoreTime_view: TextView = findViewById(R.id.coretime_start)
+        val endcoreTime_view: TextView = findViewById(R.id.coretime_end)
         lab_view.text = lab.toString()
         name_view.text = name.toString()
         studentId_view.text = studentId.toString()
-        startcoretime_view.text = String.format("%02d",startCoreHour)+":"+String.format("%02d",startCoreMinute)
-        endcoretime_view.text = String.format("%02d",endCoreHour)+":"+String.format("%02d",endCoreMinute)
+        startcoreTime_view.text = String.format("%02d", startCoreHour) + ":" + String.format("%02d", startCoreMinute)
+        endcoreTime_view.text = String.format("%02d", endCoreHour) + ":" + String.format("%02d", endCoreMinute)
         currentTime_view.text = hour.toString() + ":" + minutes.toString()
         //textView.text = scanStudent.toString()
-        Toast.makeText(this,  endCoreHour.toString(), Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, endCoreHour.toString(), Toast.LENGTH_SHORT).show()
     }
 
     //画面がタッチされるとMainActivityに遷移する
