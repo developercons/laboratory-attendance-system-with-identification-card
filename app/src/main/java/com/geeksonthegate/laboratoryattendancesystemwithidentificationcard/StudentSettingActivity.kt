@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.text.format.DateFormat
 import android.widget.CheckBox
 import android.widget.TextView
+import android.view.View
+import android.widget.*
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.adapter.LabAdapter
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.CoreTime
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Lab
@@ -49,7 +51,7 @@ class StudentSettingActivity : AppCompatActivity() {
         var student: Student? = realm.where(Student::class.java).equalTo("idm", Arrays.toString(idm)).findFirst()
 
         // コアタイム一覧を生成するメソッドに渡す一覧を生成・初期化
-        val coreTimeList = mutableListOf<CoreTime>()
+        var coreTimeList = mutableListOf<CoreTime>()
         for (i in 0..6) {
             coreTimeList.add(CoreTime(
                     GregorianCalendar(
@@ -68,6 +70,18 @@ class StudentSettingActivity : AppCompatActivity() {
         labList.addAll(results.subList(0, results.size))
         val adapter = LabAdapter(this, android.R.layout.simple_spinner_dropdown_item, labList)
         lab_spinner.adapter = adapter
+        // TODO: 最初は自分が所属してる研究室が選択されてるようにする
+        // スピナー内の選択肢が選ばれたときの動作
+        lab_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val spinner = parent as Spinner
+                val item = spinner.selectedItem as Lab
+                coreTimeList = item.coretimeArray ?: coreTimeList
+                setCoreTimeArea(coreTimeList)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) { }
+        }
 
         // 前画面から受け取ったラベルを基に処理分岐
         when (scanLabel) {
