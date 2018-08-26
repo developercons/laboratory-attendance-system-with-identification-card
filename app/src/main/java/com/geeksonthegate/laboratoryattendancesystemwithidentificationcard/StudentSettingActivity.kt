@@ -65,12 +65,16 @@ class StudentSettingActivity : AppCompatActivity() {
         // TODO: スピナー内の文字をデザインに合わせる
         val results = realm.where(Lab::class.java).findAll()
         val labList = mutableListOf<Lab>()
-        // TODO: ダミーデータを消したら「新規」選択肢は最後に回すこと
-        labList.add(Lab("新規", listToRealmList(coreTimeList)))
         labList.addAll(results.subList(0, results.size))
+        labList.add(Lab("新規", listToRealmList(coreTimeList)))
+        // スピナーの初期位置を所属研究室に合わせる（新規登録の場合は新規研究室）
+        var defaultPosition: Int = labList.size
+        for (i in 0 until labList.size) {
+            if (labList[i].labId == student?.lab?.labId) defaultPosition = i
+        }
         val adapter = LabAdapter(this, android.R.layout.simple_spinner_dropdown_item, labList)
         lab_spinner.adapter = adapter
-        // TODO: 最初は自分が所属してる研究室が選択されてるようにする
+        lab_spinner.setSelection(defaultPosition)
         // スピナー内の選択肢が選ばれたときの動作
         lab_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -80,7 +84,7 @@ class StudentSettingActivity : AppCompatActivity() {
                 setCoreTimeArea(coreTimeList)
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) { }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
         // 前画面から受け取ったラベルを基に処理分岐
