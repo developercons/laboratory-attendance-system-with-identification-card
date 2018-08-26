@@ -99,10 +99,16 @@ class StudentSettingActivity : AppCompatActivity() {
         }
 
         // 登録ボタンが押されたら画面情報を基にStudentデータを登録
+        // 研究室名が「新規」の場合は登録を拒否し研究室入力を促す
         user_register_button.setOnClickListener {
-            student = Student(Arrays.toString(idm), studentid_entry.text.toString(), name_entry.text.toString(), Lab(labName = "福田研究室", coretimeArray = listToRealmList(coreTimeList)))
-            realm.executeTransaction { it.insertOrUpdate(student) }
-            startActivity(intent)
+            val selectedLab = lab_spinner.selectedItem as Lab
+            if (selectedLab.labName != "新規") {
+                student = Student(Arrays.toString(idm), studentid_entry.text.toString(), name_entry.text.toString(), Lab(labName = "福田研究室", coretimeArray = listToRealmList(coreTimeList)))
+                realm.executeTransaction { it.insertOrUpdate(student) }
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "研究室登録をしてください", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
