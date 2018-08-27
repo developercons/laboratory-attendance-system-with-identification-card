@@ -45,7 +45,7 @@ class StudentSettingActivity : AppCompatActivity() {
         realm = Realm.getDefaultInstance()
         val scanLabel = intent.getStringExtra("scan_label")
         val idm = intent.getByteArrayExtra("idm")
-        val intent = Intent(this, MainActivity::class.java)
+        val nextIntent = Intent(this, MainActivity::class.java)
 
         // 前画面から受け取ったIDmで検索する
         var student: Student? = realm.where(Student::class.java).equalTo("idm", Arrays.toString(idm)).findFirst()
@@ -105,7 +105,7 @@ class StudentSettingActivity : AppCompatActivity() {
             if (selectedLab.labName != "新規") {
                 student = Student(Arrays.toString(idm), studentid_entry.text.toString(), name_entry.text.toString(), Lab(labName = "福田研究室", coretimeArray = listToRealmList(coreTimeList)))
                 realm.executeTransaction { it.insertOrUpdate(student) }
-                startActivity(intent)
+                startActivity(nextIntent)
             } else {
                 Toast.makeText(this, "研究室登録をしてください", Toast.LENGTH_SHORT).show()
             }
@@ -125,6 +125,15 @@ class StudentSettingActivity : AppCompatActivity() {
             isCoreDayBoxList[i].isChecked = coreTimeList[i].isCoreDay ?: true
             startCoreTimeLabelList[i].setOnClickListener {
                 val nextIntent = Intent(this, LabSettingActivity::class.java)
+                startActivity(nextIntent)
+            }
+            endCoreTimeLabelList[i].setOnClickListener {
+                val nextIntent = Intent(this, LabSettingActivity::class.java)
+                startActivity(nextIntent)
+            }
+            isCoreDayBoxList[i].setOnClickListener {
+                val nextIntent = Intent(this, LabSettingActivity::class.java)
+                startActivity(nextIntent)
             }
         }
     }
