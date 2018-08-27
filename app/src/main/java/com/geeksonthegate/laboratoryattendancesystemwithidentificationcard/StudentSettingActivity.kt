@@ -45,6 +45,7 @@ class StudentSettingActivity : AppCompatActivity() {
         realm = Realm.getDefaultInstance()
         val scanLabel = intent.getStringExtra("scan_label")
         val idm = intent.getByteArrayExtra("idm")
+        val labId = intent.getStringExtra("lab_id")
         val nextIntent = Intent(this, MainActivity::class.java)
 
         // 前画面から受け取ったIDmで検索する
@@ -68,9 +69,15 @@ class StudentSettingActivity : AppCompatActivity() {
         labList.addAll(results.subList(0, results.size))
         labList.add(Lab("新規", listToRealmList(coreTimeList)))
         // スピナーの初期位置を所属研究室に合わせる（新規登録の場合は新規研究室）
-        var defaultPosition: Int = labList.size
+        var defaultPosition: Int = labList.size - 1
         for (i in 0 until labList.size) {
             if (labList[i].labId == student?.lab?.labId) defaultPosition = i
+        }
+        // 前画面が研究室編集画面だった場合は初期位置を編集した研究室に合わせる
+        if (labId != null) {
+            for (i in 0 until labList.size) {
+                if (labList[i].labId == labId) defaultPosition = i
+            }
         }
         val adapter = LabAdapter(this, android.R.layout.simple_spinner_dropdown_item, labList)
         lab_spinner.adapter = adapter
@@ -81,7 +88,7 @@ class StudentSettingActivity : AppCompatActivity() {
                 val spinner = parent as Spinner
                 val item = spinner.selectedItem as Lab
                 coreTimeList = item.coretimeArray ?: coreTimeList
-                setCoreTimeArea(coreTimeList)
+                setCoreTimeArea(coreTimeList, scanLabel, idm)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -89,10 +96,10 @@ class StudentSettingActivity : AppCompatActivity() {
 
         // 前画面から受け取ったラベルを基に処理分岐
         when (scanLabel) {
-            getString(R.string.register) -> setCoreTimeArea(coreTimeList)
+            getString(R.string.register) -> setCoreTimeArea(coreTimeList, scanLabel, idm)
 
             getString(R.string.edit) -> {
-                setCoreTimeArea(student?.lab?.coretimeArray ?: coreTimeList)
+                setCoreTimeArea(student?.lab?.coretimeArray ?: coreTimeList, scanLabel, idm)
                 name_entry.setText(student?.name)
                 studentid_entry.setText(student?.studentId)
             }
@@ -103,7 +110,7 @@ class StudentSettingActivity : AppCompatActivity() {
         user_register_button.setOnClickListener {
             val selectedLab = lab_spinner.selectedItem as Lab
             if (selectedLab.labName != "新規") {
-                student = Student(Arrays.toString(idm), studentid_entry.text.toString(), name_entry.text.toString(), Lab(labName = "福田研究室", coretimeArray = listToRealmList(coreTimeList)))
+                student = Student(Arrays.toString(idm), studentid_entry.text.toString(), name_entry.text.toString(), selectedLab)
                 realm.executeTransaction { it.insertOrUpdate(student) }
                 startActivity(nextIntent)
             } else {
