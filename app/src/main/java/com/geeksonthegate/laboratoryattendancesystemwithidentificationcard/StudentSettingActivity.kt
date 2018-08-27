@@ -125,27 +125,32 @@ class StudentSettingActivity : AppCompatActivity() {
     }
 
     // コアタイム一覧を受け取りレイアウト内に一覧を表示するメソッド
-    private fun setCoreTimeArea(coreTimeList: List<CoreTime>) {
+    private fun setCoreTimeArea(coreTimeList: List<CoreTime>, scanLabel: String, idm: ByteArray) {
+        val sendLab = lab_spinner.selectedItem as Lab
+        val nextIntent = Intent(this, LabSettingActivity::class.java)
+        // TODO: idmは送る必要がないはずの情報 研究室情報画面から戻ってきたときに状態が保存されるようにする方法を探す
+        nextIntent.putExtra("lab_id", sendLab.labId)
+        nextIntent.putExtra("scan_label", scanLabel)
+        nextIntent.putExtra("idm", idm)
+
         for (i in 0..6) {
             startCoreTimeLabelList[i].text = DateFormat.format("kk:mm", coreTimeList[i].startCoreTime)
             endCoreTimeLabelList[i].text = DateFormat.format("kk:mm", coreTimeList[i].endCoreTime)
             isCoreDayBoxList[i].isChecked = coreTimeList[i].isCoreDay ?: true
             startCoreTimeLabelList[i].setOnClickListener {
-                val nextIntent = Intent(this, LabSettingActivity::class.java)
                 startActivity(nextIntent)
             }
             endCoreTimeLabelList[i].setOnClickListener {
-                val nextIntent = Intent(this, LabSettingActivity::class.java)
                 startActivity(nextIntent)
             }
             isCoreDayBoxList[i].setOnClickListener {
-                val nextIntent = Intent(this, LabSettingActivity::class.java)
                 startActivity(nextIntent)
             }
         }
     }
 
     // ListからRealmListへ変換するメソッド
+    // TODO: 不要なメソッド 研究室情報画面と同じように処理をすることでこのメソッドを削減する
     private fun <T> listToRealmList(list: List<T>): RealmList<T> {
         val realmList = RealmList<T>()
         for (item in list) {
