@@ -84,9 +84,11 @@ class LabSettingActivity : AppCompatActivity() {
                 cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[0]))
                 cal.set(Calendar.MINUTE, Integer.parseInt(time[1]))
                 val startDate = cal.time
+                realm.beginTransaction()
                 for (item in coreTimeList) {
                     item.startCoreTime = startDate
                 }
+                realm.commitTransaction()
                 setCoreTimeArea(coreTimeList)
             }
         })
@@ -104,9 +106,11 @@ class LabSettingActivity : AppCompatActivity() {
                 cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[0]))
                 cal.set(Calendar.MINUTE, Integer.parseInt(time[1]))
                 val endDate = cal.time
+                realm.beginTransaction()
                 for (item in coreTimeList) {
                     item.endCoreTime = endDate
                 }
+                realm.commitTransaction()
                 setCoreTimeArea(coreTimeList)
             }
         })
@@ -155,7 +159,9 @@ class LabSettingActivity : AppCompatActivity() {
                     cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[0]))
                     cal.set(Calendar.MINUTE, Integer.parseInt(time[1]))
                     val startDate = cal.time
-                    coreTimeList[i]?.startCoreTime = startDate
+                    realm.executeTransaction {
+                        coreTimeList[i]?.startCoreTime = startDate
+                    }
                 }
             })
             endCoreTimeLabelList[i].addTextChangedListener(object : TextWatcher {
@@ -171,11 +177,15 @@ class LabSettingActivity : AppCompatActivity() {
                     cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[0]))
                     cal.set(Calendar.MINUTE, Integer.parseInt(time[1]))
                     val endDate = cal.time
-                    coreTimeList[i]?.endCoreTime = endDate
+                    realm.executeTransaction {
+                        coreTimeList[i]?.endCoreTime = endDate
+                    }
                 }
             })
             isCoreDayBoxList[i].setOnCheckedChangeListener { buttonView, isChecked ->
-                coreTimeList[i]?.isCoreDay = isChecked
+                realm.executeTransaction {
+                    coreTimeList[i]?.isCoreDay = isChecked
+                }
             }
         }
     }
