@@ -64,7 +64,7 @@ class LabSettingActivity : AppCompatActivity() {
         val labId = intent.getStringExtra("lab_id")
         realm = Realm.getDefaultInstance()
         val lab = realm.where(Lab::class.java).equalTo("labId", labId).findFirst()
-                ?: Lab("新規", coreTimeList)
+                ?: Lab(labName = "新規", coretimeArray = coreTimeList)
         coreTimeList = lab.coretimeArray ?: coreTimeList
 
         // 取得もしくは生成した研究室情報から画面描画・リスナにクリックイベントを登録
@@ -123,11 +123,13 @@ class LabSettingActivity : AppCompatActivity() {
         lab_register_button.setOnClickListener {
             if (lab_name.text.toString() != "新規" && lab_name.text.toString() != "") {
                 val nextIntent = Intent(this, StudentSettingActivity::class.java)
-                val registerLab = Lab(lab_name.text.toString(), coreTimeList)
-                realm.executeTransaction { it.insertOrUpdate(registerLab) }
+                realm.executeTransaction {
+                    lab.labName = lab_name.text.toString()
+                    it.insertOrUpdate(lab)
+                }
                 nextIntent.putExtra("scan_label", scanLabel)
                 nextIntent.putExtra("idm", idm)
-                nextIntent.putExtra("lab_id", registerLab.labId)
+                nextIntent.putExtra("lab_id", lab.labId)
                 startActivity(nextIntent)
             } else {
                 Toast.makeText(this, "研究室名を入力してください", Toast.LENGTH_SHORT).show()

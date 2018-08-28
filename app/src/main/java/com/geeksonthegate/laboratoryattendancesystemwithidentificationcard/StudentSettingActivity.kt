@@ -67,7 +67,7 @@ class StudentSettingActivity : AppCompatActivity() {
         val results = realm.where(Lab::class.java).findAll()
         val labList = mutableListOf<Lab>()
         labList.addAll(results.subList(0, results.size))
-        labList.add(Lab("新規", listToRealmList(coreTimeList)))
+        labList.add(Lab(labName = "新規", coretimeArray = listToRealmList(coreTimeList)))
         // スピナーの初期位置を所属研究室に合わせる（新規登録の場合は新規研究室）
         var defaultPosition: Int = labList.size - 1
         for (i in 0 until labList.size) {
