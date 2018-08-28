@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_lab_setting.*
 import java.util.*
 
 class LabSettingActivity : AppCompatActivity() {
-
+    // TODO: 小手先修正でだいぶ読みにくくなったコードのリファクタリング
     private lateinit var realm: Realm
     private lateinit var startCoreTimeLabelList: List<TextView>
     private lateinit var endCoreTimeLabelList: List<TextView>
