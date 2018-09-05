@@ -7,10 +7,12 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.format.DateFormat
+import android.view.View
 import android.widget.CheckBox
-import android.widget.EditText
 import android.widget.TextView
+import android.widget.TimePicker
 import android.widget.Toast
+import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.dialog.TimePick
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.CoreTime
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Lab
 import io.realm.Realm
@@ -18,12 +20,13 @@ import io.realm.RealmList
 import kotlinx.android.synthetic.main.activity_lab_setting.*
 import java.util.*
 
-class LabSettingActivity : AppCompatActivity() {
+class LabSettingActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener {
     // TODO: 小手先修正でだいぶ読みにくくなったコードのリファクタリング
     private lateinit var realm: Realm
     private lateinit var startCoreTimeLabelList: List<TextView>
     private lateinit var endCoreTimeLabelList: List<TextView>
     private lateinit var isCoreDayBoxList: List<CheckBox>
+    private lateinit var tappedView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,11 +38,11 @@ class LabSettingActivity : AppCompatActivity() {
         val idm = intent.getByteArrayExtra("idm")
 
         // 画面下部のコアタイム一覧の各パーツを取得
-        startCoreTimeLabelList = listOf<EditText>(monday_coretime_start,
+        startCoreTimeLabelList = listOf<TextView>(monday_coretime_start,
                 tuesday_coretime_start, wednesday_coretime_start,
                 thursday_coretime_start, friday_coretime_start,
                 saturday_coretime_start, sunday_coretime_start)
-        endCoreTimeLabelList = listOf<EditText>(monday_coretime_end,
+        endCoreTimeLabelList = listOf<TextView>(monday_coretime_end,
                 tuesday_coretime_end, wednesday_coretime_end,
                 thursday_coretime_end, friday_coretime_end,
                 saturday_coretime_end, sunday_coretime_end)
@@ -47,7 +50,6 @@ class LabSettingActivity : AppCompatActivity() {
                 tuesday_check_box, wednesday_check_box,
                 thursday_check_box, friday_check_box,
                 saturday_check_box, sunday_check_box)
-
 
         // コアタイムリストに表示するデータを初期化
         var coreTimeList = RealmList<CoreTime>()
@@ -70,7 +72,12 @@ class LabSettingActivity : AppCompatActivity() {
         // 取得もしくは生成した研究室情報から画面描画・リスナにクリックイベントを登録
         // TODO: 時刻設定のValidationが編集中にも適用されてしまう 編集が終わってから検証するようにする
         lab_name.setText(lab.labName)
-        coretime_start.setText(DateFormat.format("kk:mm", coreTimeList[0]?.startCoreTime))
+        coretime_start.text = DateFormat.format("kk:mm", coreTimeList[0]?.startCoreTime)
+        coretime_start.setOnClickListener {
+            tappedView = it
+            val timePick = TimePick()
+            timePick.show(supportFragmentManager, "startTimePicker")
+        }
         coretime_start.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -79,20 +86,16 @@ class LabSettingActivity : AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                val time = s.toString().split(":")
-                val cal = Calendar.getInstance()
-                cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[0]))
-                cal.set(Calendar.MINUTE, Integer.parseInt(time[1]))
-                val startDate = cal.time
-                realm.beginTransaction()
-                for (item in coreTimeList) {
-                    item.startCoreTime = startDate
-                }
-                realm.commitTransaction()
-                setCoreTimeArea(coreTimeList)
+                for (item in startCoreTimeLabelList)
+                    item.text = s.toString()
             }
         })
-        coretime_end.setText(DateFormat.format("kk:mm", coreTimeList[0]?.endCoreTime))
+        coretime_end.text = DateFormat.format("kk:mm", coreTimeList[0]?.endCoreTime)
+        coretime_end.setOnClickListener {
+            tappedView = it
+            val timePick = TimePick()
+            timePick.show(supportFragmentManager, "endTimePicker")
+        }
         coretime_end.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -101,17 +104,8 @@ class LabSettingActivity : AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                val time = s.toString().split(":")
-                val cal = Calendar.getInstance()
-                cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[0]))
-                cal.set(Calendar.MINUTE, Integer.parseInt(time[1]))
-                val endDate = cal.time
-                realm.beginTransaction()
-                for (item in coreTimeList) {
-                    item.endCoreTime = endDate
-                }
-                realm.commitTransaction()
-                setCoreTimeArea(coreTimeList)
+                for (item in endCoreTimeLabelList)
+                    item.text = s.toString()
             }
         })
 
@@ -125,6 +119,18 @@ class LabSettingActivity : AppCompatActivity() {
                 val nextIntent = Intent(this, StudentSettingActivity::class.java)
                 realm.executeTransaction {
                     lab.labName = lab_name.text.toString()
+                    for (i in 0..6) {
+                        var hourAndMinute = startCoreTimeLabelList[i].text.split(":")
+                        val cal = Calendar.getInstance()
+                        cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hourAndMinute[0]))
+                        cal.set(Calendar.MINUTE, Integer.parseInt(hourAndMinute[1]))
+                        lab.coretimeArray!![i]!!.startCoreTime = cal.time
+                        hourAndMinute = endCoreTimeLabelList[i].text.split(":")
+                        cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hourAndMinute[0]))
+                        cal.set(Calendar.MINUTE, Integer.parseInt(hourAndMinute[1]))
+                        lab.coretimeArray!![i]!!.endCoreTime = cal.time
+                        lab.coretimeArray!![i]!!.isCoreDay = isCoreDayBoxList[i].isChecked
+                    }
                     it.insertOrUpdate(lab)
                 }
                 nextIntent.putExtra("scan_label", scanLabel)
@@ -142,53 +148,27 @@ class LabSettingActivity : AppCompatActivity() {
         realm.close()
     }
 
+    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+        val tappedTextView = tappedView as TextView
+        tappedTextView.text = "${String.format("%02d", hourOfDay)}:${String.format("%02d", minute)}"
+    }
+
     // コアタイムリストを基に画面描画し、変更内容をコアタイムリストに適用するメソッド
     private fun setCoreTimeArea(coreTimeList: RealmList<CoreTime>) {
         for (i in 0..6) {
             startCoreTimeLabelList[i].text = DateFormat.format("kk:mm", coreTimeList[i]?.startCoreTime)
-            endCoreTimeLabelList[i].text = DateFormat.format("kk:mm", coreTimeList[i]?.endCoreTime)
-            isCoreDayBoxList[i].isChecked = coreTimeList[i]?.isCoreDay ?: true
-            startCoreTimeLabelList[i].addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                }
-
-                override fun afterTextChanged(s: Editable?) {
-                    val time = s.toString().split(":")
-                    val cal = Calendar.getInstance()
-                    cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[0]))
-                    cal.set(Calendar.MINUTE, Integer.parseInt(time[1]))
-                    val startDate = cal.time
-                    realm.executeTransaction {
-                        coreTimeList[i]?.startCoreTime = startDate
-                    }
-                }
-            })
-            endCoreTimeLabelList[i].addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                }
-
-                override fun afterTextChanged(s: Editable?) {
-                    val time = s.toString().split(":")
-                    val cal = Calendar.getInstance()
-                    cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[0]))
-                    cal.set(Calendar.MINUTE, Integer.parseInt(time[1]))
-                    val endDate = cal.time
-                    realm.executeTransaction {
-                        coreTimeList[i]?.endCoreTime = endDate
-                    }
-                }
-            })
-            isCoreDayBoxList[i].setOnCheckedChangeListener { buttonView, isChecked ->
-                realm.executeTransaction {
-                    coreTimeList[i]?.isCoreDay = isChecked
-                }
+            startCoreTimeLabelList[i].setOnClickListener {
+                tappedView = it
+                val timePick = TimePick()
+                timePick.show(supportFragmentManager, "startTimePicker")
             }
+            endCoreTimeLabelList[i].text = DateFormat.format("kk:mm", coreTimeList[i]?.endCoreTime)
+            endCoreTimeLabelList[i].setOnClickListener {
+                tappedView = it
+                val timePick = TimePick()
+                timePick.show(supportFragmentManager, "endTimePicker")
+            }
+            isCoreDayBoxList[i].isChecked = coreTimeList[i]?.isCoreDay ?: true
         }
     }
 }

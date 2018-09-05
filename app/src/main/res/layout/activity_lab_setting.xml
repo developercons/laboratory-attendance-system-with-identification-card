@@ -168,12 +168,11 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/coretime_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:inputType="time"
         android:text="@string/coretime_start"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
@@ -181,12 +180,11 @@
         app:layout_constraintTop_toBottomOf="@+id/coretime_label"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/coretime_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:inputType="time"
         android:text="@string/coretime_end"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
@@ -280,11 +278,10 @@
         app:layout_constraintTop_toBottomOf="@+id/saturday"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/sunday_coretime_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
         android:text="@string/sunday_coretime_end"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
@@ -294,11 +291,10 @@
         app:layout_constraintVertical_bias="0.5"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/saturday_coretime_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
         android:text="@string/saturday_coretime_end"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
@@ -308,11 +304,10 @@
         app:layout_constraintVertical_bias="0.5"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/friday_coretime_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
         android:text="@string/friday_coretime_end"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
@@ -322,11 +317,10 @@
         app:layout_constraintVertical_bias="0.5"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/thursday_coretime_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
         android:text="@string/thursday_coretime_end"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
@@ -335,11 +329,10 @@
         app:layout_constraintTop_toTopOf="@+id/thursday_start_end_label"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/wednesday_coretime_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
         android:text="@string/wednesday_coretime_end"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
@@ -349,11 +342,10 @@
         app:layout_constraintVertical_bias="0.5"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/tuesday_coretime_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
         android:text="@string/tuesday_coretime_end"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
@@ -363,11 +355,10 @@
         app:layout_constraintVertical_bias="0.5"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/monday_coretime_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
         android:text="@string/monday_coretime_end"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
@@ -376,11 +367,10 @@
         app:layout_constraintTop_toTopOf="@+id/monday_start_end_label"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/sunday_coretime_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
         android:text="@string/sunday_coretime_start"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
@@ -389,11 +379,10 @@
         app:layout_constraintTop_toTopOf="@+id/sunday"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/saturday_coretime_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
         android:text="@string/saturday_coretime_start"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
@@ -403,11 +392,10 @@
         app:layout_constraintVertical_bias="0.5"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/friday_coretime_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
         android:text="@string/friday_coretime_start"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
@@ -417,11 +405,10 @@
         app:layout_constraintVertical_bias="0.5"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/thursday_coretime_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
         android:text="@string/thursday_coretime_start"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
@@ -431,11 +418,10 @@
         app:layout_constraintVertical_bias="0.5"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/wednesday_coretime_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
         android:text="@string/wednesday_coretime_start"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
@@ -444,11 +430,10 @@
         app:layout_constraintTop_toTopOf="@+id/wednesday"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/tuesday_coretime_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
         android:text="@string/tuesday_coretime_start"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
@@ -457,11 +442,10 @@
         app:layout_constraintTop_toTopOf="@+id/tuesday"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/monday_coretime_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
         android:text="@string/monday_coretime_start"
         android:textColor="@color/colorAccent"
         android:textSize="27dp"
@@ -573,7 +557,7 @@
         android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="@string/lab_hint"
-        android:inputType="textPersonName"
+        android:inputType="text"
         android:textSize="27dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lab_label" />
