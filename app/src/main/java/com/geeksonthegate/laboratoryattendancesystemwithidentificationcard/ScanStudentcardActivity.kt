@@ -7,11 +7,9 @@ import android.content.Intent
 import android.nfc.NfcAdapter
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.content.ContextCompat.startActivity
 import android.widget.Toast
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.model.Student
 import io.realm.Realm
-import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_scan_studentcard.*
 import java.util.*
 
@@ -108,7 +106,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
                     }
                 // 未登録の学生の場合にはメインに遷移し, モーダルを表示
                     !isRegisteredCard(idm) -> {
-                        unknownRegistedCardModal(nextIntent)
+                        unknownResistedCardModal(nextIntent)
                     }
                 }
             }
@@ -121,7 +119,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
                     }
                 // 未登録の学生の場合にはメインに遷移し, モーダルを表示
                     !isRegisteredCard(idm) -> {
-                        unknownRegistedCardModal(nextIntent)
+                        unknownResistedCardModal(nextIntent)
                     }
                 }
             }
@@ -147,7 +145,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
         }
     }
 
-    private fun unknownRegistedCardModal(nextIntent: Intent) {
+    private fun unknownResistedCardModal(nextIntent: Intent) {
 
         setContentView(R.layout.activity_scan_studentcard)
         AlertDialog.Builder(this).apply {
@@ -158,7 +156,6 @@ class ScanStudentcardActivity : AppCompatActivity() {
                 // OKがタップされたらMain画面に遷移
                 startActivity(nextIntent)
             })
-            setNegativeButton("Cancel", null)
             show()
         }
     }
