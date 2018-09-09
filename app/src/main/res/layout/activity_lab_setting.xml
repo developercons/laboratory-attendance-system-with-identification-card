@@ -47,7 +47,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="100dp"
         android:text="@string/name_label"
@@ -572,7 +571,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tuesday_coretime_end"
         app:layout_constraintStart_toEndOf="@+id/tuesday_coretime_end"
         app:layout_constraintTop_toBottomOf="@+id/monday_coretime_end"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.615" />
 
     <CheckBox
         android:id="@+id/wednesday_check_box"
@@ -635,12 +634,11 @@
 
     <Spinner
         android:id="@+id/lab_spinner"
-        android:layout_width="246dp"
-        android:layout_height="37dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="54dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/lab_label" />
 
     <EditText
         android:id="@+id/name_entry"
