@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.activity_lab_setting.*
 import java.util.*
 
 class LabSettingActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener {
-    // TODO: 小手先修正でだいぶ読みにくくなったコードのリファクタリング
     private lateinit var realm: Realm
     private lateinit var startCoreTimeLabelList: List<TextView>
     private lateinit var endCoreTimeLabelList: List<TextView>
@@ -69,7 +68,7 @@ class LabSettingActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListen
                 ?: Lab(labName = "新規", coretimeArray = coreTimeList)
         coreTimeList = lab.coretimeArray ?: coreTimeList
 
-        // 取得もしくは生成した研究室情報から画面描画・リスナにクリックイベントを登録
+        // 取得もしくは生成した研究室情報から画面描画・リスナにクリック・表示内容変更イベントを登録
         // TODO: 時刻設定のValidationが編集中にも適用されてしまう 編集が終わってから検証するようにする
         lab_name.setText(lab.labName)
         coretime_start.text = DateFormat.format("kk:mm", coreTimeList[0]?.startCoreTime)
