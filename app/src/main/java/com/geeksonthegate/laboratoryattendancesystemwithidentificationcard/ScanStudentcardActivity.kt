@@ -141,7 +141,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
     private fun isRegisteredCard(idm: ByteArray): Boolean {
         return when {
             realm.where(Student::class.java).equalTo("idm", Arrays.toString(idm)).findFirst() == null -> false
-            else -> false
+            else -> true
         }
     }
 
@@ -152,7 +152,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
             setCancelable(false)
             setTitle("この学生証は未登録です")
             setMessage("トップから登録ボタンをタップして\n学生情報を登録してください")
-            setPositiveButton("OK", DialogInterface.OnClickListener { dialog, id ->
+            setPositiveButton("OK", { _, _ ->
                 // OKがタップされたらMain画面に遷移
                 startActivity(nextIntent)
             })
