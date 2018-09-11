@@ -3,9 +3,7 @@ package com.geeksonthegate.laboratoryattendancesystemwithidentificationcard
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-
 import android.text.format.DateFormat
-import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.TextView
 import com.geeksonthegate.laboratoryattendancesystemwithidentificationcard.adapter.LabAdapter
