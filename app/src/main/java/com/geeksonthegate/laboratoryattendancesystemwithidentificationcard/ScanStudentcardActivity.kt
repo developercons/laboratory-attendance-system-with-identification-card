@@ -2,7 +2,6 @@ package com.geeksonthegate.laboratoryattendancesystemwithidentificationcard
 
 import android.app.AlertDialog
 import android.app.PendingIntent
-import android.content.DialogInterface
 import android.content.Intent
 import android.nfc.NfcAdapter
 import android.support.v7.app.AppCompatActivity
@@ -27,7 +26,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
     /**
      * 前画面で押されたボタンのIDを格納するプロパティ
      */
-    // TODO: 宣言位置の再考
+    // TODO: ここでidを宣言するか再考の余地あり
     var id: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,7 +81,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        // TODO: 初期値の再考
+        // 初期値として遷移先をメイン画面に設定
         var nextIntent = Intent(this, MainActivity::class.java)
 
         // NFCのEXTRA_IDを読み込み、前画面で押されたボタンと共に表示する
@@ -90,8 +89,6 @@ class ScanStudentcardActivity : AppCompatActivity() {
             Toast.makeText(this, "Failed to read NFC", Toast.LENGTH_SHORT).show()
             return
         }
-
-        Toast.makeText(this, Arrays.toString(idm), Toast.LENGTH_SHORT).show()
 
         nextIntent.putExtra("scan_label", title)
         nextIntent.putExtra("idm", idm)
@@ -104,12 +101,13 @@ class ScanStudentcardActivity : AppCompatActivity() {
                         nextIntent = Intent(this, RoomConfirmationActivity::class.java)
                         startActivity(nextIntent)
                     }
-                // 未登録の学生の場合にはメインに遷移し, モーダルを表示
+                // 未登録の学生の場合にはモーダルを表示し、メインに遷移
                     !isRegisteredCard(idm) -> {
                         unknownResistedCardModal(nextIntent)
                     }
                 }
             }
+
             R.id.exit -> {
                 when {
                 // 登録済みの学生の場合には確認画面に遷移する
@@ -117,16 +115,39 @@ class ScanStudentcardActivity : AppCompatActivity() {
                         nextIntent = Intent(this, RoomConfirmationActivity::class.java)
                         startActivity(nextIntent)
                     }
-                // 未登録の学生の場合にはメインに遷移し, モーダルを表示
+                // 未登録の学生の場合にはモーダルを表示し、メインに遷移
                     !isRegisteredCard(idm) -> {
                         unknownResistedCardModal(nextIntent)
                     }
                 }
             }
 
-            R.id.register, R.id.edit -> {
-                nextIntent = Intent(this, StudentSettingActivity::class.java)
-                startActivity(nextIntent)
+            R.id.register -> {
+                when {
+                // 登録済みの学生の場合には、モーダルを表示してメインに遷移
+                    isRegisteredCard(idm) -> {
+                        existCardModal(nextIntent)
+                    }
+                // 未登録の学生の場合には登録画面に遷移
+                    !isRegisteredCard(idm) -> {
+                        nextIntent = Intent(this, StudentSettingActivity::class.java)
+                        startActivity(nextIntent)
+                    }
+                }
+            }
+
+            R.id.edit -> {
+                when {
+                // 登録済みの学生の場合には編集画面に遷移する
+                    isRegisteredCard(idm) -> {
+                        nextIntent = Intent(this, StudentSettingActivity::class.java)
+                        startActivity(nextIntent)
+                    }
+                // 未登録の学生の場合にはメインに遷移し, モーダルを表示
+                    !isRegisteredCard(idm) -> {
+                        unknownResistedCardModal(nextIntent)
+                    }
+                }
             }
         }
     }
@@ -145,13 +166,34 @@ class ScanStudentcardActivity : AppCompatActivity() {
         }
     }
 
+    /*
+    スキャンされたカードが未登録の場合に表示するモーダル
+    入室・退室・登録に未登録カードがスキャンされた場合に表示
+    */
     private fun unknownResistedCardModal(nextIntent: Intent) {
-
         setContentView(R.layout.activity_scan_studentcard)
         AlertDialog.Builder(this).apply {
             setCancelable(false)
             setTitle("この学生証は未登録です")
             setMessage("トップから登録ボタンをタップして\n学生情報を登録してください")
+            setPositiveButton("OK", { _, _ ->
+                // OKがタップされたらMain画面に遷移
+                startActivity(nextIntent)
+            })
+            show()
+        }
+    }
+
+    /*
+    スキャンされたカードが登録済みの場合に表示するモーダル
+    登録にすでに登録ずみカードがスキャンされたときに表示
+    */
+    private fun existCardModal(nextIntent: Intent) {
+
+        setContentView(R.layout.activity_scan_studentcard)
+        AlertDialog.Builder(this).apply {
+            setCancelable(false)
+            setTitle("この学生証は登録済みです")
             setPositiveButton("OK", { _, _ ->
                 // OKがタップされたらMain画面に遷移
                 startActivity(nextIntent)
