@@ -137,7 +137,7 @@ class ScanStudentcardActivity : AppCompatActivity() {
     }
 
     /*登録済みの学生証かどうかを判断する
-    * 登録済みなら true / 未登録ならfalseを返す*/
+    * 登録済みなら true _ 未登録ならfalseを返す*/
     private fun isRegisteredCard(idm: ByteArray): Boolean {
         return when {
             realm.where(Student::class.java).equalTo("idm", Arrays.toString(idm)).findFirst() == null -> false
