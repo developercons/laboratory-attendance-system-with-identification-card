@@ -102,6 +102,8 @@ class ScanStudentcardActivity : AppCompatActivity() {
                 // 登録済みの学生の場合には確認画面に遷移する
                     isRegisteredCard(idm) -> {
                         nextIntent = Intent(this, RoomConfirmationActivity::class.java)
+                        nextIntent.putExtra("scan_label", title)
+                        nextIntent.putExtra("idm", idm)
                         startActivity(nextIntent)
                     }
                 // 未登録の学生の場合にはメインに遷移し, モーダルを表示
@@ -115,6 +117,8 @@ class ScanStudentcardActivity : AppCompatActivity() {
                 // 登録済みの学生の場合には確認画面に遷移する
                     isRegisteredCard(idm) -> {
                         nextIntent = Intent(this, RoomConfirmationActivity::class.java)
+                        nextIntent.putExtra("scan_label", title)
+                        nextIntent.putExtra("idm", idm)
                         startActivity(nextIntent)
                     }
                 // 未登録の学生の場合にはメインに遷移し, モーダルを表示
@@ -126,6 +130,8 @@ class ScanStudentcardActivity : AppCompatActivity() {
 
             R.id.register, R.id.edit -> {
                 nextIntent = Intent(this, StudentSettingActivity::class.java)
+                nextIntent.putExtra("scan_label", title)
+                nextIntent.putExtra("idm", idm)
                 startActivity(nextIntent)
             }
         }
